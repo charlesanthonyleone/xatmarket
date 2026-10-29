@@ -10,7 +10,7 @@ export default function Advertising() {
     <>
       <PageHero kicker="Market Advertising" title="We run the promo." accent="You pay once." visual={<AdMock />}>
         <p className="lede">Choose a package and pay us once through Xat Trade. We buy the promo time and manage it for you.</p>
-        <p className="mt-5 font-display text-2xl italic text-goldsoft">On Xat · set prices · Outside Xat · ask for a quote</p>
+        <p className="mt-5 font-display text-2xl font-semibold text-goldsoft">On Xat · set prices · Outside Xat · ask for a quote</p>
         <div className="mt-9 flex flex-wrap gap-3"><StaffLink>Talk to online staff</StaffLink><a href="#calculator" className="btn-ghost">Xat value calculator</a></div>
       </PageHero>
 
@@ -64,7 +64,7 @@ export default function Advertising() {
         <div className="mt-16"><Steps items={adSteps} cols={5} /></div>
       </Section>
 
-      <div className="border-t border-white/[.07] bg-ink2 py-16"><div className="wrap flex items-center gap-6"><div className="h-px flex-1 bg-gold/40" /><p className="text-center font-display text-3xl italic text-goldsoft sm:text-4xl">Everything below is outside Xat</p><div className="h-px flex-1 bg-gold/40" /></div></div>
+      <div className="tone-y border-t border-white/[.07] py-16"><div className="wrap flex items-center gap-6"><div className="h-px flex-1 bg-gold/40" /><p className="text-center font-display text-3xl font-bold lowercase text-white sm:text-4xl">Everything below is outside Xat</p><div className="h-px flex-1 bg-gold/40" /></div></div>
 
       <Section tone="a">
         <SectionHead kicker="Off-Platform Advertising" title="Promote Outside Xat">
@@ -85,7 +85,7 @@ export default function Advertising() {
         </div>
       </Section>
 
-      <section className="relative isolate overflow-hidden border-t border-white/[.07] bg-ink2 py-28 text-center sm:py-40">
+      <section className="tone-y relative isolate overflow-hidden py-28 text-center sm:py-40">
         <div className="hairline-grid absolute inset-0 -z-10" aria-hidden="true" />
         <Reveal className="wrap">
           <p className="eyebrow">Ready to advertise?</p>

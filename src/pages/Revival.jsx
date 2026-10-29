@@ -7,7 +7,7 @@ export default function Revival() {
     <>
       <PageHero kicker="Market / Community Revival" title="A fresh start" accent="for your Xat chat." visual={<RevivalMock />}>
         <p className="lede">A quiet or troubled chat can become a place people want to return to. We help you face what went wrong, rebuild trust, and make the group feel alive again.</p>
-        <p className="mt-6 font-display text-2xl italic text-goldsoft">Led mainly by Charles (Prince) · Custom plan · ask for a quote</p>
+        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Led mainly by Charles (Prince) · Custom plan · ask for a quote</p>
         <div className="mt-9"><StaffLink>Talk to online staff</StaffLink></div>
       </PageHero>
 

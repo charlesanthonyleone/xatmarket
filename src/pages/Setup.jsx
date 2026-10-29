@@ -12,7 +12,7 @@ export default function Setup() {
     <>
       <PageHero kicker="Market / Community services" title="Build a chat" accent="worth coming back to." visual={<SetupMock />}>
         <p className="lede">A good Xat group needs more than a room. Find the people who can set it up, run events, reward the team, and keep it alive.</p>
-        <p className="mt-6 font-display text-2xl italic text-goldsoft">9 ways to build · Real people · real Xat work</p>
+        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">9 ways to build · Real people · real Xat work</p>
         <div className="mt-9"><a href="#services" className="btn-gold">Explore the services</a></div>
       </PageHero>
 

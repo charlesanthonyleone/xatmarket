@@ -9,7 +9,7 @@ export default function Ideas() {
     <>
       <PageHero kicker="XatMarket / Active projects" title="Real ventures." accent="Built around Xat." visual={<CastMock />}>
         <p className="lede">We do not build pages on Xat—we build worlds around it. First we create the experience: a news platform, a live world map, a broadcast network. Then we embed Xat at its center, and keep building the world around it. These projects are active now, and each needs managers, staff, and owners to run it.</p>
-        <p className="mt-6 font-display text-2xl italic text-goldsoft">Paid in real money · Registered businesses · Xat embedded at the center</p>
+        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Paid in real money · Registered businesses · Xat embedded at the center</p>
       </PageHero>
 
       <Section tone="b">
@@ -29,7 +29,7 @@ export default function Ideas() {
               <h2 className="h2 mt-4">{v.name}</h2>
               {v.warning && <div className="mt-7"><Warn strong={v.warning.strong}>{v.warning.text}</Warn></div>}
               <p className="lede mt-7 line-clamp-5">{v.intro}</p>
-              <p className="mt-6 font-display text-2xl italic text-goldsoft">{v.items.map((i) => i.name).join(' · ')}</p>
+              <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">{v.items.map((i) => i.name).join(' · ')}</p>
               <GoLink to={`/ideas/${v.slug}`} className="btn-ghost mt-9">Explore {v.short}</GoLink>
             </Reveal>
             <Reveal delay={120} className="min-w-0"><VentureMock slug={v.slug} /></Reveal>

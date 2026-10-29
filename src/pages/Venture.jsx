@@ -49,7 +49,7 @@ export default function Venture() {
         {v.footnote && <p className="lede mt-14 max-w-3xl border-l-2 border-gold pl-6">{v.footnote}</p>}
       </Section>
 
-      <Link to={`/ideas/${next.slug}`} className="group block border-t border-white/[.07] bg-ink transition hover:bg-ink2">
+      <Link to={`/ideas/${next.slug}`} className="tone-y group block transition hover:brightness-125">
         <div className="wrap flex items-center justify-between gap-6 py-20 sm:py-24">
           <div><p className="eyebrow">Next idea</p><p className="h-display mt-3 text-5xl sm:text-7xl">{next.name}</p></div>
           <span className="grid size-16 shrink-0 place-items-center rounded-full border border-white/15 text-cream transition group-hover:border-gold group-hover:text-gold sm:size-20"><ArrowRight className="size-6 transition group-hover:translate-x-1" /></span>

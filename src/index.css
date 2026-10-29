@@ -2,72 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- xat.com look: light bands + navy bar + space backgrounds (direct.css / platform.css R00259) ---- */
+:root, .tone-l, .tone-a, .tone-b { --fg: 33 37 41; --mute: 90 96 108; --panel: 255 255 255; --panel2: 240 247 255; --acc: 21 127 251; --acc2: 0 0 153; }
+.tone-d, .tone-c, .tone-y { --fg: 255 255 255; --mute: 196 208 255; --panel: 8 14 70; --panel2: 14 24 110; --acc: 249 201 49; --acc2: 2 169 210; }
 html { scroll-behavior: smooth; }
-body { @apply bg-ink text-cream font-sans antialiased; overflow-x: hidden; }
-::selection { background: #F9C931; color: #000044; }
-.wrap { @apply mx-auto w-full max-w-[1200px] px-5 sm:px-10; }
-.section { @apply relative overflow-hidden py-16 sm:py-28; }
-/* xat palette section tones */
-.tone-a { background: linear-gradient(180deg,#000044 0%,#000088 100%); }
-.tone-b { background: radial-gradient(90% 70% at 85% 0%, rgba(2,169,210,.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgba(167,23,201,.35), transparent 60%), linear-gradient(160deg,#0a2fd6 0%,#000088 70%); }
-.tone-c { background: linear-gradient(135deg,#1E90FF 0%,#02A9D2 55%,#00B168 120%); }
-.tone-y { background: linear-gradient(135deg,#FFE27A 0%,#F9C931 60%,#ffb020 100%); color:#000044; }
-.tone-y .eyebrow { background:#000044; color:#F9C931 !important; box-shadow:0 4px 0 rgba(0,0,40,.35); }
-.tone-c .copy,.tone-c .lede { color:#fff; }
-.tone-y .h2,.tone-y .h3,.tone-y .lede,.tone-y .copy { color:#000044 !important; }
-.dots { background-image: radial-gradient(rgba(255,255,255,.16) 1.5px, transparent 1.6px); background-size: 26px 26px; }
-.eyebrow { @apply inline-flex items-center gap-2 rounded-full bg-gold px-4 py-1.5 font-display text-[15px] font-semibold uppercase tracking-wide text-ink; box-shadow: 0 4px 0 #c99a12; }
-.h-display { @apply font-display font-bold leading-[.98] tracking-[-0.02em] text-cream; text-shadow: 0 6px 0 rgba(0,0,40,.35); }
-.h2 { @apply font-display text-[38px] font-bold leading-[1.02] tracking-[-0.015em] text-cream sm:text-6xl lg:text-[68px]; }
-.h3 { @apply font-display text-[22px] font-semibold tracking-[-0.01em] text-cream sm:text-[26px]; }
-.lede { @apply text-[17px] font-semibold leading-8 text-cream/85 sm:text-lg; }
-.copy { @apply text-[16px] leading-7 text-cream/80; }
-.btn { @apply inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 font-display text-[17px] font-semibold transition duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-white; }
-.btn:hover { transform: translateY(-3px) rotate(-1.5deg) scale(1.03); }
-.btn:active { transform: translateY(2px); }
-.btn-primary { @apply btn bg-white text-ink; box-shadow: 0 6px 0 #9fb4ff; }
-.btn-gold { @apply btn bg-gold text-ink; box-shadow: 0 6px 0 #c99a12, 0 16px 30px -10px rgba(249,201,49,.6); }
-.btn-gold:hover { box-shadow: 0 9px 0 #c99a12, 0 22px 40px -10px rgba(249,201,49,.7); }
-.btn-ghost { @apply btn border-[3px] border-white text-cream hover:bg-white hover:text-ink; }
-.tone-y .btn-ghost { @apply border-ink text-ink hover:bg-ink hover:text-white; }
-.link { @apply inline-flex items-center gap-2 font-bold text-cream transition hover:text-gold; }
-.window { @apply relative overflow-hidden rounded-[26px] border-[3px] border-white/25 bg-panel; box-shadow: 0 14px 0 rgba(0,0,40,.35), 0 40px 80px -30px rgba(0,0,30,.8); }
-.hairline-grid { @apply dots; mask-image: radial-gradient(80% 70% at 50% 30%, #000 30%, transparent 100%); }
-.warn { @apply flex gap-3 rounded-2xl border-[3px] border-warn bg-white p-5 text-[16px] font-semibold leading-7 text-ink; box-shadow: 0 6px 0 #b31e1e; }
-.example-tag { @apply ml-2 shrink-0 rounded-full bg-gold px-2 py-0.5 text-[10.5px] font-extrabold uppercase tracking-wider text-ink; }
-input[type=range] { accent-color: #F9C931; }
-.tilt { transform-style: preserve-3d; transition: transform .25s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+body { @apply font-sans antialiased; background: #f5f5f5; color: rgb(var(--fg)); overflow-x: hidden; }
+::selection { background: #1e90ff; color: #fff; }
+a { color: inherit; }
+.wrap { @apply mx-auto w-full max-w-[1140px] px-5 sm:px-8; }
+.section { @apply relative overflow-hidden py-16 sm:py-24; }
 
-/* wave divider */
-.wave-top { position:absolute; left:0; right:0; top:-1px; height:40px; }
+/* tones */
+.tone-a { background: #f5f5f5; border-top: 1px solid #d1d2d4; }
+.tone-b { background: #f9f9f9; border-top: 1px solid #d1d2d4; }
+.tone-c { background: #000014; }
+.tone-y { background: linear-gradient(#000044, #000088); }
+.tone-l, .tone-a, .tone-b { color: rgb(var(--fg)); }
+.tone-d, .tone-c, .tone-y { color: #fff; }
 
-@keyframes msgIn { from { opacity: 0; transform: translateY(14px) scale(.9); } to { opacity: 1; transform: none; } }
-.msg-in { animation: msgIn .5s cubic-bezier(.3,1.6,.5,1) both; }
-@keyframes blink { 0%,80%,100% { opacity: .25 } 40% { opacity: 1 } }
-.dot-b { animation: blink 1.2s infinite both; }
-@keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-.ticker { animation: ticker 28s linear infinite; }
-@keyframes pulse2 { 0% { transform: scale(.6); opacity: .9 } 100% { transform: scale(2.6); opacity: 0 } }
-.ping { animation: pulse2 2.4s cubic-bezier(.2,.7,.2,1) infinite; }
-@keyframes draw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } }
-.draw { stroke-dasharray: 1; animation: draw 3.2s cubic-bezier(.4,.1,.2,1) both; }
-@keyframes progress { from { width: 8% } to { width: 92% } }
-.progress { animation: progress 14s linear infinite alternate; }
-@keyframes rise { from { opacity: 0; transform: translateY(30px) scale(.96) } to { opacity: 1; transform: none } }
-.rise { animation: rise .8s cubic-bezier(.3,1.4,.5,1) both; }
-@keyframes floaty { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)) } 50% { transform: translateY(-18px) rotate(calc(var(--r,0deg) * -1)) } }
-.floaty { animation: floaty var(--d,5s) ease-in-out infinite; animation-delay: var(--dl,0s); }
-@keyframes bounceIn { 0% { opacity:0; transform: translateY(40px) scale(.4) rotate(-8deg) } 60% { opacity:1; transform: translateY(-8px) scale(1.08) rotate(3deg) } 100% { transform:none } }
-.letter { display:inline-block; animation: bounceIn .7s cubic-bezier(.3,1.5,.5,1) both; }
-@keyframes wobble { 0%,100% { transform: rotate(-2deg) } 50% { transform: rotate(2deg) } }
-.wobble { display:inline-block; animation: wobble 2.6s ease-in-out infinite; }
+/* light-band fixups for utility classes written for dark */
+.tone-l [class*="border-white"], .tone-a [class*="border-white"], .tone-b [class*="border-white"] { border-color: #d1d2d4 !important; }
+.tone-a [class*="divide-white"] > *, .tone-b [class*="divide-white"] > * { border-color: #d1d2d4 !important; }
+.tone-a [class*="bg-ink/"], .tone-b [class*="bg-ink/"] { background: #f5f5f5 !important; }
+.tone-a .bg-panel, .tone-b .bg-panel, .tone-a .bg-panel2, .tone-b .bg-panel2 { box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+
+.eyebrow { @apply inline-flex items-center gap-2 font-btn text-[13px] lowercase tracking-wide; color: #157ffb; }
+.tone-d .eyebrow, .tone-c .eyebrow, .tone-y .eyebrow { color: #7fd6ff; }
+.eyebrow::before { content: ''; width: 22px; height: 11px; background: url(/xatmarket/xat/img/xatplanet.svg) center/contain no-repeat; }
+.h-display { @apply font-display font-bold leading-[1.05] tracking-[-0.01em] lowercase; color: rgb(var(--fg)); }
+.h2 { @apply font-display text-[34px] font-bold lowercase leading-[1.1] sm:text-5xl lg:text-[54px]; color: rgb(var(--fg)); }
+.h3 { @apply font-display text-[21px] font-bold sm:text-[24px]; color: rgb(var(--fg)); }
+.lede { @apply text-[17px] leading-8 sm:text-[18px]; color: rgb(var(--fg) / .88); }
+.copy { @apply text-[16px] leading-7; color: rgb(var(--fg) / .8); }
+
+/* buttons: navy pill (embed.html) / register blue (navbar) */
+.btn { @apply inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 font-btn text-[15px] font-bold text-white transition duration-150 focus:outline-none focus-visible:ring-4 focus-visible:ring-xblue/50; }
+.btn:active { transform: translateY(1px); }
+.btn-gold, .btn-primary { @apply btn rounded-md; background: #1e90ff; border: 1px solid #007bff; box-shadow: 0 2px 0 #0062cc; }
+.btn-gold:hover, .btn-primary:hover { background: #007bff; }
+.btn-ghost { @apply btn; background: linear-gradient(90deg, #000099, #000050); }
+.btn-ghost:hover { background: linear-gradient(90deg, #0000c4, #000070); }
+.tone-c .btn-ghost, .tone-y .btn-ghost { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
+.link { @apply inline-flex items-center gap-2 font-bold text-xlink hover:underline; }
+.arrow-r { @apply grid size-11 place-items-center rounded-full text-white transition; background: #06c; }
+.arrow-r:hover { background: #157ffb; }
+
+/* xat group card (xat.com home "xat groups") */
+.gcard { @apply overflow-hidden rounded bg-white text-center transition; border: 1px solid #d1d2d4; color: #212529; }
+.gcard:hover { border-color: #157ffb; }
+.gcard-h { @apply py-1.5 text-[13px] font-bold; background: #eee; border-bottom: 1px solid #d1d2d4; color: #212529; }
+/* power card */
+.pcard { @apply relative rounded-[2rem] p-6 sm:p-8 transition; background: #fff; border: 1px solid #d1d2d4; color:#212529; }
+.pcard:hover { border-color: #157ffb; box-shadow: 0 6px 24px -10px rgba(21,127,251,.45); }
+.tag-new { @apply inline-block rounded-full px-2.5 py-0.5 font-btn text-[11px] font-bold uppercase text-white; background: linear-gradient(20deg, #e31717, #a717c9); }
+.pill { @apply inline-flex items-center justify-center rounded px-2 py-0.5 text-[11px] font-bold text-white; }
+
+.window { @apply relative overflow-hidden rounded bg-white text-[#212529]; border: 1px solid #b9bbbe; box-shadow: 0 20px 50px -20px rgba(0,0,40,.55); }
+.warn { @apply flex gap-3 rounded-md bg-white p-5 text-[16px] font-semibold leading-7 text-[#212529]; border: 2px solid #e31717; border-left-width: 8px; }
+.example-tag { @apply ml-2 shrink-0 rounded px-1.5 py-0.5 text-[10px] font-bold uppercase text-white; background: #6c757d; }
+input[type=range] { accent-color: #1e90ff; }
+.hairline-grid { }
+
+/* space background (Market group style) */
+.space { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: radial-gradient(60% 50% at 80% 20%, rgba(30,120,220,.22), transparent 70%), radial-gradient(40% 30% at 45% 0%, rgba(255,255,255,.12), transparent 70%), linear-gradient(#00000c, #05082a 70%, #0b0f22); }
+.space .stars { position: absolute; inset: 0; background: url(/xatmarket/xat/bg/stars.svg) 0 0 / 600px 600px; }
+.space .stars2 { position: absolute; inset: 0; background: url(/xatmarket/xat/bg/stars.svg) 300px 200px / 380px 380px; opacity: .55; animation: twinkle 5s ease-in-out infinite alternate; }
+.space .mtn { position: absolute; left: 0; right: 0; bottom: 0; height: 32%; min-height: 120px; background: url(/xatmarket/xat/bg/mountains.svg) bottom / 100% 100% no-repeat; }
+.space .planet { position: absolute; filter: drop-shadow(0 0 40px rgba(2,169,210,.55)); animation: drift 9s ease-in-out infinite; }
+@keyframes twinkle { from { opacity: .2 } to { opacity: .8 } }
+@keyframes drift { 0%,100% { transform: translateY(0) rotate(-4deg) } 50% { transform: translateY(-10px) rotate(-2deg) } }
+
+/* rainbow event text (used sparingly) */
 @keyframes shine { from { background-position: 0% 50% } to { background-position: 200% 50% } }
-.rainbow { background: linear-gradient(90deg,#F9C931,#FF8A3D,#FF3636,#A717C9,#1E90FF,#02A9D2,#00B168,#F9C931); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; text-shadow:none; }
-.reveal { opacity: 0; transform: translateY(40px) scale(.95); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.3,1.5,.5,1); }
+.rainbow { background: linear-gradient(90deg,#ff3636,#ff9f1a,#f9c931,#00dd00,#1e90ff,#a717c9,#ff3636); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 7s linear infinite; }
+@keyframes pulse2 { 0% { box-shadow: 0 0 0 0 rgba(30,144,255,.55) } 100% { box-shadow: 0 0 0 14px rgba(30,144,255,0) } }
+.pulse { animation: pulse2 2s ease-out infinite; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+.rise { animation: rise .6s ease-out both; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease-out, transform .6s ease-out; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .msg-in, .dot-b, .ticker, .ping, .draw, .progress, .rise, .floaty, .letter, .wobble, .rainbow { animation: none !important; }
-  .draw { stroke-dashoffset: 0; }
+  .rise, .rainbow, .pulse, .space .planet, .space .stars2 { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
