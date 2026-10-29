@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { @apply bg-ink text-cream font-sans antialiased; }
+::selection { background: #d9b36a; color: #060b18; }
+.kicker { @apply font-display italic text-gold text-lg sm:text-xl; }
+.h-section { @apply font-display font-semibold text-cream leading-[1.02] text-4xl sm:text-5xl lg:text-6xl; }
+.h-card { @apply font-display font-semibold text-cream leading-tight text-2xl sm:text-3xl; }
+.body { @apply text-[15px] sm:text-base leading-7 text-cream/80; }
+.wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+.band { @apply relative py-20 sm:py-28; }
+.band-a { background: #060b18; }
+.band-b { background: linear-gradient(180deg,#0b1428 0%,#0a1224 100%); }
+.band-c { background: radial-gradient(120% 80% at 50% 0%, #13213f 0%, #0b1428 55%, #060b18 100%); }
+.rule-gold { height:1px; background: linear-gradient(90deg, transparent, rgba(217,179,106,.55), transparent); }
+.btn-gold { @apply inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 font-semibold text-ink transition hover:bg-goldsoft focus:outline-none focus-visible:ring-2 focus-visible:ring-goldsoft focus-visible:ring-offset-2 focus-visible:ring-offset-ink; }
+.btn-ghost { @apply inline-flex items-center gap-2 rounded-full border border-gold/50 px-6 py-3 font-semibold text-cream transition hover:border-gold hover:bg-gold/10; }
+.img-card { @apply relative overflow-hidden rounded-2xl border border-white/10 bg-navy; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+.img-card img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.img-card:hover img { transform: scale(1.04); }
+.shade-b { background: linear-gradient(180deg, rgba(6,11,24,0) 30%, rgba(6,11,24,.85) 75%, #060b18 100%); }
+.panel { @apply rounded-2xl border border-white/10 bg-white/[.03]; }
+.warn { @apply flex gap-3 rounded-xl border-2 border-warn bg-warn/10 p-5 text-[15px] leading-7 text-cream; }
+input[type=range] { accent-color: #d9b36a; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .img-card img { transition: none; } }

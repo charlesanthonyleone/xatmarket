@@ -1,0 +1,22 @@
+import { xatCast, xatVision, multiChat, codexSteps, codexExtras, codexTiers, overlayParts } from './data.js'
+export const ventures = [
+  { slug: 'xatcast', name: 'The XatCast Series', short: 'XatCast', kicker: 'Series one', image: 'v_cast',
+    intro: 'Four live information platforms, each with a Xat community embedded at its center. Each one watches the world—news, conflict, markets, weather—and gives people a place to talk about it as it happens.',
+    items: xatCast },
+  { slug: 'xatvision', name: 'The XatVision Series', short: 'XatVision', kicker: 'Series two', tag: 'Like a TV station', image: 'v_vision',
+    intro: 'XatVision operates like a broadcast network with multiple channels. Curated stations—art, military history, sports, music—draw from public-domain and licensed archives, with scheduled programming blocks curated by AI agents and human managers. Each station keeps its own staff and community. And when people fall in love with one corner of it—a genre, an era, a scene—whole new niches grow out of it, with their own curators and their own spaces.',
+    items: xatVision },
+  { slug: 'multi-chatting', name: 'Multi-Chatting', short: 'Multi-Chatting', kicker: 'Active plan', tag: 'Many chats, one place', image: 'v_multi',
+    intro: 'Be in more than one chat at the same time, without juggling tabs. Your communities sit side by side, so you never miss what matters.',
+    items: multiChat },
+  { slug: 'xatcodex', name: 'XatCodex', short: 'XatCodex', kicker: 'Active plan', tag: 'One chat. A whole business.', image: 'v_codex',
+    warning: { strong: 'Fair warning: this one is ambitious.', text: ' It needs serious outside knowledge of coding, AI, and security. Only reach out if you have real experience building this kind of system.' },
+    intro: 'XatCodex is not just a chat builder. It is a whole process. You set up your chat with AI—then we build an entire community business around it. Xat stays Xat. We center it, and build the world around it.',
+    steps: codexSteps, items: codexExtras, tiers: codexTiers,
+    tierNote: 'Proposed pricing only. Tier details beyond $5 and $15 are examples. Only useful powers are included—tools that help you promote your chat.' },
+  { slug: 'xat-overlay', name: 'The Xat Overlay', short: 'The Xat Overlay', kicker: 'Active plan', tag: 'Xat in World of Warcraft', image: 'v_overlay',
+    warning: { strong: 'Fair warning: this one needs real coders.', text: ' It is built with Lua and browser-overlay work. Reach out only if you truly know game addons and plugin interfaces.' },
+    intro: 'The idea: an addon that puts Xat directly inside World of Warcraft. Discord already lives inside games through official addons. This is that—except for Xat. Your chat, on screen, while you play.',
+    items: overlayParts,
+    footnote: "Every game has its own rules for addons. This plan stays inside each game's addon and plugin interfaces—never against them." },
+]
