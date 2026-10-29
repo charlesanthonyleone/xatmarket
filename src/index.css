@@ -3,30 +3,44 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { @apply bg-ink text-cream font-sans antialiased; font-feature-settings: "cv11","ss01"; }
-::selection { background: #d2ad66; color: #07090e; }
+body { @apply bg-ink text-cream font-sans antialiased; overflow-x: hidden; }
+::selection { background: #F9C931; color: #000044; }
 .wrap { @apply mx-auto w-full max-w-[1200px] px-5 sm:px-10; }
-.section { @apply relative border-t border-white/[.07] py-24 sm:py-32; }
-.tone-a { background: #07090e; }
-.tone-b { background: #0a0e17; }
-.eyebrow { @apply text-[15px] font-medium text-gold; }
-.h-display { @apply font-display font-normal leading-[1.04] tracking-[-0.015em] text-cream; }
-.h2 { @apply font-display text-[44px] font-normal leading-[1.05] tracking-[-0.01em] text-cream sm:text-6xl lg:text-[68px]; }
-.h3 { @apply text-xl font-semibold tracking-[-0.01em] text-cream sm:text-[22px]; }
-.lede { @apply text-[17px] leading-8 text-cream/65 sm:text-lg; }
-.copy { @apply text-[15.5px] leading-7 text-cream/65; }
-.btn { @apply inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink; }
-.btn-primary { @apply btn bg-cream text-ink hover:bg-white; }
-.btn-gold { @apply btn bg-gold text-ink hover:bg-goldsoft; }
-.btn-ghost { @apply btn border border-white/15 text-cream hover:border-white/35 hover:bg-white/[.04]; }
-.link { @apply inline-flex items-center gap-2 font-semibold text-cream transition hover:text-gold; }
-.window { @apply relative overflow-hidden rounded-2xl border border-white/10 bg-panel; box-shadow: 0 1px 0 rgba(255,255,255,.05) inset, 0 50px 100px -40px rgba(0,0,0,.85); }
-.hairline-grid { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(80% 70% at 50% 30%, #000 30%, transparent 100%); }
-.warn { @apply flex gap-3 rounded-xl border border-warn/70 bg-warn/[.08] p-5 text-[15.5px] leading-7 text-cream; }
-input[type=range] { accent-color: #d2ad66; }
+.section { @apply relative overflow-hidden py-16 sm:py-28; }
+/* xat palette section tones */
+.tone-a { background: linear-gradient(180deg,#000044 0%,#000088 100%); }
+.tone-b { background: radial-gradient(90% 70% at 85% 0%, rgba(2,169,210,.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgba(167,23,201,.35), transparent 60%), linear-gradient(160deg,#0a2fd6 0%,#000088 70%); }
+.tone-c { background: linear-gradient(135deg,#1E90FF 0%,#02A9D2 55%,#00B168 120%); }
+.tone-y { background: linear-gradient(135deg,#FFE27A 0%,#F9C931 60%,#ffb020 100%); color:#000044; }
+.tone-y .h2,.tone-y .h3,.tone-y .lede,.tone-y .copy,.tone-y .eyebrow { color:#000044 !important; }
+.dots { background-image: radial-gradient(rgba(255,255,255,.16) 1.5px, transparent 1.6px); background-size: 26px 26px; }
+.eyebrow { @apply inline-flex items-center gap-2 rounded-full bg-gold px-4 py-1.5 font-display text-[15px] font-semibold uppercase tracking-wide text-ink; box-shadow: 0 4px 0 #c99a12; }
+.h-display { @apply font-display font-bold leading-[.98] tracking-[-0.02em] text-cream; text-shadow: 0 6px 0 rgba(0,0,40,.35); }
+.h2 { @apply font-display text-[38px] font-bold leading-[1.02] tracking-[-0.015em] text-cream sm:text-6xl lg:text-[68px]; }
+.h3 { @apply font-display text-[22px] font-semibold tracking-[-0.01em] text-cream sm:text-[26px]; }
+.lede { @apply text-[17px] font-semibold leading-8 text-cream/85 sm:text-lg; }
+.copy { @apply text-[16px] leading-7 text-cream/80; }
+.btn { @apply inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 font-display text-[17px] font-semibold transition duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-white; }
+.btn:hover { transform: translateY(-3px) rotate(-1.5deg) scale(1.03); }
+.btn:active { transform: translateY(2px); }
+.btn-primary { @apply btn bg-white text-ink; box-shadow: 0 6px 0 #9fb4ff; }
+.btn-gold { @apply btn bg-gold text-ink; box-shadow: 0 6px 0 #c99a12, 0 16px 30px -10px rgba(249,201,49,.6); }
+.btn-gold:hover { box-shadow: 0 9px 0 #c99a12, 0 22px 40px -10px rgba(249,201,49,.7); }
+.btn-ghost { @apply btn border-[3px] border-white text-cream hover:bg-white hover:text-ink; }
+.tone-y .btn-ghost { @apply border-ink text-ink hover:bg-ink hover:text-white; }
+.link { @apply inline-flex items-center gap-2 font-bold text-cream transition hover:text-gold; }
+.window { @apply relative overflow-hidden rounded-[26px] border-[3px] border-white/25 bg-panel; box-shadow: 0 14px 0 rgba(0,0,40,.35), 0 40px 80px -30px rgba(0,0,30,.8); }
+.hairline-grid { @apply dots; mask-image: radial-gradient(80% 70% at 50% 30%, #000 30%, transparent 100%); }
+.warn { @apply flex gap-3 rounded-2xl border-[3px] border-warn bg-white p-5 text-[16px] font-semibold leading-7 text-ink; box-shadow: 0 6px 0 #b31e1e; }
+.example-tag { @apply ml-2 shrink-0 rounded-full bg-gold px-2 py-0.5 text-[10.5px] font-extrabold uppercase tracking-wider text-ink; }
+input[type=range] { accent-color: #F9C931; }
+.tilt { transform-style: preserve-3d; transition: transform .25s cubic-bezier(.2,.7,.2,1); will-change: transform; }
 
-@keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.msg-in { animation: msgIn .55s cubic-bezier(.2,.7,.2,1) both; }
+/* wave divider */
+.wave-top { position:absolute; left:0; right:0; top:-1px; height:40px; }
+
+@keyframes msgIn { from { opacity: 0; transform: translateY(14px) scale(.9); } to { opacity: 1; transform: none; } }
+.msg-in { animation: msgIn .5s cubic-bezier(.3,1.6,.5,1) both; }
 @keyframes blink { 0%,80%,100% { opacity: .25 } 40% { opacity: 1 } }
 .dot-b { animation: blink 1.2s infinite both; }
 @keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
@@ -37,13 +51,21 @@ input[type=range] { accent-color: #d2ad66; }
 .draw { stroke-dasharray: 1; animation: draw 3.2s cubic-bezier(.4,.1,.2,1) both; }
 @keyframes progress { from { width: 8% } to { width: 92% } }
 .progress { animation: progress 14s linear infinite alternate; }
-@keyframes rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
-.rise { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+@keyframes rise { from { opacity: 0; transform: translateY(30px) scale(.96) } to { opacity: 1; transform: none } }
+.rise { animation: rise .8s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)) } 50% { transform: translateY(-18px) rotate(calc(var(--r,0deg) * -1)) } }
+.floaty { animation: floaty var(--d,5s) ease-in-out infinite; animation-delay: var(--dl,0s); }
+@keyframes bounceIn { 0% { opacity:0; transform: translateY(40px) scale(.4) rotate(-8deg) } 60% { opacity:1; transform: translateY(-8px) scale(1.08) rotate(3deg) } 100% { transform:none } }
+.letter { display:inline-block; animation: bounceIn .7s cubic-bezier(.3,1.5,.5,1) both; }
+@keyframes wobble { 0%,100% { transform: rotate(-2deg) } 50% { transform: rotate(2deg) } }
+.wobble { display:inline-block; animation: wobble 2.6s ease-in-out infinite; }
+@keyframes shine { from { background-position: 0% 50% } to { background-position: 200% 50% } }
+.rainbow { background: linear-gradient(90deg,#F9C931,#FF8A3D,#FF3636,#A717C9,#1E90FF,#02A9D2,#00B168,#F9C931); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; text-shadow:none; }
+.reveal { opacity: 0; transform: translateY(40px) scale(.95); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.3,1.5,.5,1); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .msg-in, .dot-b, .ticker, .ping, .draw, .progress, .rise { animation: none !important; }
+  .msg-in, .dot-b, .ticker, .ping, .draw, .progress, .rise, .floaty, .letter, .wobble, .rainbow { animation: none !important; }
   .draw { stroke-dashoffset: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }

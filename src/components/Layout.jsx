@@ -12,7 +12,7 @@ const services = [
 const ideas = [{ to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short }))]
 
 function Wordmark() {
-  return <Link to="/" className="font-display text-[26px] leading-none text-cream" aria-label="XatMarket home">Xat<em className="text-goldsoft">Market</em></Link>
+  return <Link to="/" className="group flex items-center gap-2 font-display text-[26px] font-bold leading-none text-cream" aria-label="XatMarket home"><img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="size-9 transition group-hover:rotate-12 group-hover:scale-110" />Xat<span className="-ml-2 text-gold">Market</span></Link>
 }
 const navCls = (on) => `rounded-full px-4 py-2 text-[14.5px] font-medium transition ${on ? 'bg-white/[.08] text-cream' : 'text-cream/70 hover:text-cream'}`
 

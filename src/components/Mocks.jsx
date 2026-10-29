@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useInView, useTick, useReduced } from '../hooks.js'
 
-const hues = ['#d2ad66', '#7aa2f7', '#9ece6a', '#e0af68', '#bb9af7', '#7dcfff', '#f7768e', '#c0caf5']
+const hues = ['#F9C931', '#02A9D2', '#00B168', '#FF8A3D', '#A717C9', '#1E90FF', '#FF3636', '#7CE0FF']
 const Av = ({ n = 'A', i = 0, s = 28 }) => (
   <span className="grid shrink-0 place-items-center rounded-full text-[11px] font-semibold text-ink" style={{ width: s, height: s, background: hues[i % hues.length] }}>{n[0]}</span>
 )
@@ -9,10 +9,10 @@ const Av = ({ n = 'A', i = 0, s = 28 }) => (
 export function Window({ title, children, className = '', right }) {
   return (
     <div className={`window ${className}`}>
-      <div className="flex h-11 items-center gap-3 border-b border-white/[.07] px-4">
-        <span className="flex gap-1.5"><i className="size-2.5 rounded-full bg-white/15" /><i className="size-2.5 rounded-full bg-white/15" /><i className="size-2.5 rounded-full bg-white/15" /></span>
-        <span className="truncate text-[12.5px] text-mist">{title}</span>
-        <span className="ml-auto text-[12px] text-mist">{right}</span>
+      <div className="flex h-12 items-center gap-3 border-b-[3px] border-white/15 bg-gradient-to-r from-xblue to-xcyan px-4">
+        <span className="flex gap-1.5"><i className="size-3 rounded-full bg-xred" /><i className="size-3 rounded-full bg-gold" /><i className="size-3 rounded-full bg-xgreen" /></span>
+        <span className="truncate text-[13px] font-bold text-white">{title}</span><span className="example-tag" title="Illustrative example: names and numbers are made up">Example</span>
+        <span className="ml-auto shrink-0 text-[12px] font-bold text-white">{right}</span>
       </div>
       {children}
     </div>
