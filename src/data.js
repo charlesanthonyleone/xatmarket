@@ -113,6 +113,7 @@ export const paidRoles = [
   { icon: "radio", title: "Music & radio DJs", text: "Host listening sessions or a radio show with requests and shout-outs. Use music you have the rights to play." },
   { icon: "layers", title: "Banner & smiley artists", text: "Create banners, custom smilies, and chat decorations. Offer packs or single pieces at a fair price." },
   { icon: "send", title: "Writers", text: "Write announcements, event posts, wiki pages, and newsletters. Clear words help a community grow." },
+  { icon: "bulb", title: "Storytellers & roleplay hosts", text: "Run ongoing stories, roleplay campaigns, or creative-writing nights where members build the plot together. Agree on the schedule and your fee." },
 ];
 
 export const ownerIdeas = [

@@ -25,6 +25,7 @@ export default function Earn() {
             </Reveal>
           ))}
         </div>
+        <Reveal className="mt-12 rounded-2xl border border-gold/30 bg-gold/[.06] p-7 text-center"><p className="font-display text-2xl font-semibold text-goldsoft">These are just examples.</p><p className="copy mt-2">Got a different idea? Bring it. Anyone can pitch whatever they're great at.</p></Reveal>
       </Section>
 
       <Section tone="c">
