@@ -3,6 +3,10 @@ import { StaffLink, Section, SectionHead, Steps, Invite, Reveal, GoLink, Space, 
 import { HeroChat, AdMock, SetupMock, RevivalMock, EarnMock, CastMock } from '../components/Mocks.jsx'
 import { marketPaths, marketSteps } from '../data.js'
 import { Ico, Mark } from '../components/Icons.jsx'
+import IslandGL from '../components/IslandGL.jsx'
+
+const CARD = import.meta.env.BASE_URL + 'cards/'
+const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', earn: 'c_earn', ideas: 'c_ideas' }
 
 const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', earn: '/get-paid', ideas: '/ideas' }
 const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, earn: EarnMock, ideas: CastMock }
@@ -14,27 +18,28 @@ const principles = [
   { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'users' },
   { title: 'Respect the space', text: "We follow Xat's rules and do not help build spaces for bullying or harassment. Market is independent of Xat.", icon: 'shield' },
 ]
-const Plus = () => <span className="grid size-[18px] shrink-0 place-items-center rounded-full bg-mint text-[#0b0f2e] text-[14px] font-bold leading-none">+</span>
+const Plus = () => <span className="tab-plus">+</span>
 
 export default function Home() {
   return (
     <>
-      <section className="tone-c relative isolate overflow-hidden pb-16 pt-24 sm:pb-24 sm:pt-28">
-        <Space />
-        <div className="wrap grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
-          <div className="min-w-0 rise">
+      <section className="hero tone-c relative isolate overflow-hidden">
+        <IslandGL variant="hero" />
+        <div className="hero-veil" />
+        <div className="wrap hero-inner">
+          <div className="min-w-0 max-w-[640px] rise">
             <p className="eyebrow">Xat Market / The place to connect</p>
-            <h1 className="h-display mt-4 text-[46px] sm:text-[72px] lg:text-[78px]">Good people.<br /><span className="rainbow">Good things to build.</span></h1>
+            <h1 className="h-display mt-4 text-[52px] sm:text-[84px] lg:text-[96px]">Good people.<br /><span className="grad-text">Good things to build.</span></h1>
             <p className="lede mt-6 max-w-lg">Market brings Xat communities together with people who can help. Need a better chat, a bigger crowd, or a fresh start? Start here.</p>
             <div className="mt-8 flex flex-wrap gap-3"><StaffLink>Visit chat</StaffLink><a href="#explore" className="btn-ghost">What can Market do?</a></div>
           </div>
-          <div className="min-w-0 rise" style={{ animationDelay: '.15s' }}><HeroChat /></div>
         </div>
+        <a href="#explore" className="hero-scroll" aria-label="Scroll to What can Market do?"><span /></a>
       </section>
 
-      <nav aria-label="Market tabs" className="sticky top-[68px] z-30 border-y border-white/10 bg-[#12163a]/95 backdrop-blur-sm">
+      <nav aria-label="Market tabs" className="market-tabs sticky top-[68px] z-30">
         <div className="flex items-center gap-1 overflow-x-auto px-3 py-2 text-[15px] text-white sm:px-5">
-          <span className="mr-3 flex shrink-0 items-center gap-2 text-[17px] font-semibold"><Mark className="size-5" />Market</span>
+          <span className="mr-3 flex shrink-0 items-center gap-2 text-[17px] font-semibold">Market</span>
           {tabs.map(([t, to]) => <Link key={t} to={to} className="flex shrink-0 items-center gap-1.5 rounded px-2.5 py-1 hover:bg-white/10"><Plus />{t}</Link>)}
         </div>
       </nav>
@@ -43,10 +48,10 @@ export default function Home() {
         <SectionHead kicker="Find your way in" title="What can Market do?" />
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {marketPaths.map((p) => (
-            <Link key={p.id} to={routes[p.id]} className="gcard group flex flex-col">
-              <p className="gcard-h px-2">{p.title}</p>
-              <div className="mx-4 mt-3 grid h-[96px] place-items-center rounded-2xl text-[#1a0b1f]" style={{ background: grads[p.id] }}><Ico n={icons[p.id]} className="size-12 transition group-hover:scale-110" strokeWidth={2} /></div>
-              <p className="px-3 pb-4 pt-2 text-[13px] leading-snug text-[#545a80]">{p.label}</p>
+            <Link key={p.id} to={routes[p.id]} className="isle-card group">
+              <img src={`${CARD}${cimg[p.id]}.webp`} alt="" loading="lazy" width="1024" height="768" />
+              <span className="isle-shade" />
+              <span className="isle-text"><span className="isle-t">{p.title}</span><span className="isle-l">{p.label}</span></span>
             </Link>
           ))}
         </div>
@@ -54,7 +59,7 @@ export default function Home() {
 
       {marketPaths.map((p, i) => {
         const M = mocks[p.id]
-        const tone = ['b', 'y', 'a', 'c', 'b'][i]
+        const tone = ['b', 'y', 'a', 'c', 'b'][i] // sand, lagoon, shallows, night, sand
         return (
           <Section key={p.id} tone={tone}>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -82,7 +87,7 @@ export default function Home() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {principles.map((p, n) => (
             <Reveal key={p.title} delay={n * 80} className="pcard">
-              <span className="grid size-14 place-items-center rounded-2xl bg-[#12163a] text-mint"><Ico n={p.icon} className="size-7" /></span>
+              <span className="p-ico"><Ico n={p.icon} className="size-7" /></span>
               <h3 className="h3 mt-4">{p.title}</h3>
               <p className="copy mt-2">{p.text}</p>
             </Reveal>
