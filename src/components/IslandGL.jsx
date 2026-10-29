@@ -16,51 +16,66 @@ vec3 met(vec2 px){vec3 c=vec3(0.);
   for(int i=0;i<7;i++){vec4 m=uM[i];if(m.w<=0.)continue;vec4 d=uMD[i];
     vec2 hp=uOff+m.xy*uSize;vec2 r=px-hp;vec2 dir=normalize(d.xy+1e-5);
     float along=-dot(r,dir);float perp=abs(r.x*dir.y-r.y*dir.x);float sz=max(m.z,.35);
-    float head=exp(-dot(r,r)/(sz*sz*1.2));
-    float tl=max(d.z,1.);float tw=sz*(d.w>.5?1.6:.55)*(1.+along/tl*(d.w>.5?2.5:.8));
-    float tail=along>0.?exp(-along/tl*2.2)*exp(-perp*perp/(tw*tw))*(d.w>.5?.55:.8):0.;
+    float head=exp(-dot(r,r)/(sz*sz*(d.w>.5?1.2:.5)));
+    float tl=max(d.z,1.);float tw=d.w>.5?sz*1.3*(1.+along/tl*2.2):(.45+.15*sz)*(1.-.5*clamp(along/(tl*3.),0.,1.));
+    float tail=along>0.?exp(-along/tl*2.2)*exp(-perp*perp/(tw*tw))*(d.w>.5?.45:.9)*(d.w>.5?1.:.8+.2*h(vec2(floor(along*.5),float(i)))):0.;
     float coma=d.w>.5?exp(-length(r)/(sz*4.))*.18:0.;
     vec3 hc=d.w>1.5?vec3(1.,.9,.78):vec3(.86,.96,1.);
     c+=(hc*head*1.4+vec3(.75,.9,1.)*tail+vec3(.6,.9,1.)*coma)*m.w;}
   return c;}
 void main(){vec2 px=v*uRes;vec2 u=(px-uOff)/uSize;float t=uT;
   float sky=texture2D(uS,u).r;float lake=uLakeOn*texture2D(uL,u).r;float foam=texture2D(uF,u).r;
-  vec2 uu=u;float rip=0.;
-  float depth=clamp((u.y-uHz)/(1.-uHz),0.,1.);           /* 0 at horizon, 1 at bottom: perspective */
+  vec2 uu=u;float rip=0.;vec2 nrm=vec2(0.);float wd=0.;
+  /* soft water mask (the stored mask is binary; feather it so nothing has a seam) */
+  if(lake>.01||uLakeOn>0.){vec2 e=vec2(3.,2.)/uSize;
+    float lm=texture2D(uL,u).r*.28+(texture2D(uL,u+e).r+texture2D(uL,u-e).r+texture2D(uL,u+vec2(e.x,-e.y)).r+texture2D(uL,u+vec2(-e.x,e.y)).r)*.18;lake=uLakeOn*lm;}
+  float depth=clamp((u.y-uHz)/(1.-uHz),0.,1.);
   if(lake>.01){
-    /* swell: long crests travelling toward the beach, compressed toward the horizon */
-    float k=mix(260.,55.,sqrt(depth));float ph=u.y*k-t*1.25+sin(u.x*7.+t*.2)*1.6;
-    float sw=sin(ph)+.45*sin(ph*1.9+u.x*11.-t*.6);
-    uu.y+=sw*.0011*(.25+depth*1.4)*lake;
-    /* surf wash: the foam band slides up the sand and drains back */
-    float wash=sin(t*.55)*.55+sin(t*.31+1.3)*.45;
-    uu+=vec2(-.0016,-.0042)*wash*smoothstep(.15,.9,depth)*lake;
-    /* fine refraction chop */
-    vec2 q=u*vec2(70.,170.);float a1=n(q+vec2(t*.35,t*.9)),a2=n(q*1.9-vec2(t*.5,t*1.3)),a3=n(q*.5+vec2(-t*.2,t*.5));
-    uu+=vec2(a1-a2,(a2+a3-1.))*.0028*(.3+depth)*lake;}
-  if(lake>.01&&uR.w>0.){float age=t-uR.z;vec2 dd=(u-uR.xy)*uSize*vec2(1.,3.4);float dr=length(dd);float R=uR.w*(5.+age*24.);
-    float env=exp(-age*.7)*smoothstep(0.,.15,age)*exp(-pow((dr-R)/(uR.w*9.+age*10.),2.));
-    float w=sin((dr-R)*.55/max(uR.w*.35,.6))*env;uu+=normalize(dd+1e-4)*vec2(1.,1./3.4)*w*uR.w*4./uSize;rip=w*lake;}
+    /* perspective ground plane: distance z grows toward the horizon, so waves shrink & slow there */
+    float z=1./max(u.y-uHz,.004);vec2 w=vec2((u.x-.62)*z*1.3,z);
+    /* directional swell travelling toward the shore (+screen y = -z), sum of slopes = surface normal */
+    vec2 g=vec2(0.);float hsum=0.;
+    for(int i=0;i<5;i++){float fi=float(i);float ang=-.35+fi*.19+sin(fi*2.3)*.12;vec2 dir=vec2(sin(ang),-cos(ang));
+      float k=.55*pow(1.62,fi);float om=sqrt(9.8*k)*.32;float am=.9/pow(1.9,fi);
+      float ph=dot(w,dir)*k*-1.+om*t+fi*1.7+n(w*.06+fi)*2.5;hsum+=am*sin(ph);g+=dir*k*am*cos(ph);}
+    /* capillary chop: animated noise in plane coords (tiles shrink with distance too) */
+    vec2 q=w*vec2(1.6,1.6);float c1=n(q+vec2(t*.21,-t*.55)),c2=n(q*2.1+vec2(-t*.34,-t*.8)),c3=n(q*4.3+vec2(t*.5,-t*1.2));
+    g+=vec2(c1-c2,c2+c3-1.)*.9;
+    nrm=g/z*.9; /* screen-space slope: foreshortened by distance */
+    float near=smoothstep(.0,.6,depth);
+    uu+=vec2(nrm.x*.0016,nrm.y*.0024)*(.4+near*1.2)*lake;
+    /* surf wash: each arriving set runs up the sand obliquely and drains back, phase varies along the beach */
+    float run=sin(t*.48-u.x*9.+n(vec2(u.x*6.,t*.1))*2.)*.6+sin(t*.29-u.x*5.+1.3)*.4;
+    float zone=smoothstep(.2,.95,depth);
+    uu+=vec2(-.0012,-.0034)*run*zone*lake;wd=run*zone;}
+  if(lake>.01&&uR.w>0.){float age=t-uR.z;vec2 dd=(u-uR.xy)*uSize*vec2(1.,3.4);float dr=length(dd);float R=uR.w*(4.+age*22.);
+    float env=exp(-age*.55)*smoothstep(0.,.2,age)*exp(-pow((dr-R)/(uR.w*7.+age*14.),2.))*smoothstep(0.,R*.6+1.,dr);
+    float lam=max(uR.w*1.4,2.)*(1.+age*.25);float w2=cos((dr-R)/lam*6.283)*env;float sl=-sin((dr-R)/lam*6.283)*env;
+    uu+=normalize(dd+1e-4)*vec2(1.,1./3.4)*sl*uR.w*2.2/uSize;rip=sl*lake;nrm+=normalize(dd+1e-4)*sl*1.5;}
   if(uG.y>.001){float wv=texture2D(uWd,u).r;
     if(wv>.003){float fl=.55+.45*sin(t*2.3+u.x*23.+u.y*17.)+.35*(n(u*vec2(40.,30.)+vec2(t*3.*uG.x,t))-.5);
       float bend=uG.y*wv*wv*(.7+.5*fl);uu+=vec2(uG.x*bend*7.,bend*2.+uG.y*wv*sin(t*5.+u.x*61.)*.7)/uSize;}
     if(lake>.01){float band=exp(-pow((u.x-uG.z)/.1,2.))*uG.y;vec2 q2=u*vec2(260.,520.)+vec2(-t*6.*uG.x,t*.8);
       uu+=vec2(n(q2)-n(q2+vec2(3.1,7.7)),n(q2*1.7)-.5)*band*.0026*lake;}}
   /* idle breeze: fronds never quite still */
-  {float wv=texture2D(uWd,u).r;if(wv>.003){float s=sin(t*.9+u.x*9.)*.6+sin(t*1.7+u.y*13.)*.4;uu+=vec2(s*2.2,s*.6)*wv*wv/uSize;}}
+  {float wv=texture2D(uWd,u).r;if(wv>.003){float s=sin(t*.63+u.x*4.)*.45+sin(t*1.13+u.x*7.+u.y*3.)*.3+(n(vec2(t*.8,u.x*3.+u.y*2.))-.5)*.9+(n(u*vec2(60.,45.)+t*1.9)-.5)*.35*wv;uu+=vec2(s*2.,s*.5)*wv*wv/uSize;}}
   vec3 col=texture2D(uP,uu).rgb;
   /* sky: slow rotation + extra parallax (deeper than the shore) */
   if(sky>.01){vec2 ru=rot(u,uRot)+uPar/uSize;float sk2=texture2D(uS,ru).r;float k=smoothstep(.8,1.,sky)*smoothstep(.8,1.,sk2)*smoothstep(uHz-.01,uHz-.08,u.y);col=mix(col,texture2D(uP,ru).rgb,k);}
   if(lake>.01){
-    float fo=texture2D(uF,uu).r;
-    float crest=pow(.5+.5*sin(u.y*mix(260.,55.,sqrt(depth))-t*1.25+sin(u.x*7.+t*.2)*1.6),6.);
-    col+=vec3(.75,.9,.95)*crest*.07*depth*lake;
-    /* bioluminescent sparks riding the foam */
-    float sp=n(u*vec2(900.,500.)+vec2(t*.6,-t*.9));sp=smoothstep(.82,1.,sp)*(.5+.5*sin(t*3.+u.x*80.));
-    col+=vec3(.2,.95,1.)*sp*fo*.55+vec3(.05,.55,.6)*fo*(.08+.06*sin(t*.55));
-    col*=1.+rip*.5;col+=vec3(.6,.85,.95)*max(rip,0.)*.07;}
-  col+=met(px)*max(sky,lake*.35);
-  if(lake>.01&&uR.w>0.){float age=t-uR.z;vec2 dd=(u-uR.xy)*uSize*vec2(1.,3.4);col+=vec3(.85,1.,1.)*exp(-age*3.)*exp(-dot(dd,dd)/(uR.w*uR.w*55.))*1.6*smoothstep(-.01,.03,age);}
+    float fo=texture2D(uF,uu).r;float lum=dot(col,vec3(.3,.55,.15));
+    /* moon glitter: facets whose slope tilts toward the moon flash, only where the photo is already lit by it */
+    float facet=n(u*vec2(1400.,900.)/(1.+3.*(1.-depth))+nrm*3.+vec2(t*.7,-t*1.1));
+    float gl=smoothstep(.72,.95,facet)*smoothstep(.0,1.2,-nrm.y+.4)*smoothstep(.28,.6,lum);
+    col+=vec3(.95,.97,1.)*gl*.55*lake*(1.-fo*.6);
+    /* slope shading: slight darkening on back faces, ripples catch the sky */
+    col*=1.+clamp(-nrm.y*.06+rip*.18,-.12,.12)*lake;
+    /* foam churns: brighter where the wash pushes up, very faint biolum flecks only in breaking foam */
+    col+=col*fo*max(wd,0.)*.18*lake;
+    float sp=n(u*vec2(1100.,620.)+vec2(t*.4,-t*.7));sp=smoothstep(.9,1.,sp)*smoothstep(.2,.8,max(wd,0.));
+    col+=vec3(.15,.75,.8)*sp*fo*.18*lake;}
+  col+=met(px)*max(sky,lake*.12);
+  if(lake>.01&&uR.w>0.){float age=t-uR.z;vec2 dd=(u-uR.xy)*uSize*vec2(1.,3.4);col+=vec3(.85,1.,1.)*exp(-age*3.)*exp(-dot(dd,dd)/(uR.w*uR.w*55.))*.9*smoothstep(-.01,.03,age);}
   col*=uDim;
   float g=h(floor(px*uDpr)+fract(t*24.)*91.)-.5;col+=g*.03;
   gl_FragColor=vec4(col,1.);}`
@@ -159,10 +174,11 @@ export default function IslandGL({ variant = 'hero' }) {
       for (let i = 0; i < stars.length; i++) { const [x, y, m, d] = stars[i]; const dx = (x - pole[0]) * asp, dy = y - pole[1]
         const rx = pole[0] + (cr * dx - sr * dy) / asp, ry = pole[1] + (sr * dx + cr * dy); const sx = off[0] + rx * size[0] - par.x * 7, sy = off[1] + ry * size[1] - par.y * 4
         if (sx < -20 || sy < -20 || sx > W + 20 || sy > H + 20 || ry > hz - .01) continue
-        const p = i * 2.399, sc = reduce ? .7 : Math.max(0, .55 + .45 * Math.sin(t * (2.3 + (i % 7) * .9) + p) * Math.sin(t * (5.1 + (i % 5) * 1.7) + p * 1.7) + .25 * Math.sin(t * (11 + i % 9) + p * 3))
-        const r = (1.4 + m * 3.2) * (.7 + .6 * sc), lim = d * size[0] / BW
-        const rr = Math.min(r, lim); if (rr < .5) continue; o2.globalAlpha = Math.min(1, (.22 + .55 * m) * sc); o2.drawImage(G, sx - rr, sy - rr, rr * 2, rr * 2)
-        if (i < 6 && m > .8) { const L = Math.min(lim, (12 + 14 * m) * (.6 + .5 * sc)); o2.globalAlpha = .45 * sc; o2.drawImage(S, sx - L, sy - L, L * 2, L * 2) } }
+        const p = i * 2.399, air = .35 + .65 * Math.min(1, Math.max(0, ry / hz)) ** 2, f1 = 1.7 + (i * .618 % 1) * 2.1, f2 = 4.3 + (i * .414 % 1) * 3.7, f3 = 9.1 + (i * .732 % 1) * 6
+        const sc = reduce ? .7 : Math.max(.08, 1 + air * (.32 * Math.sin(t * f1 + p) + .22 * Math.sin(t * f2 + p * 1.7) + .14 * Math.sin(t * f3 + p * 3.1) - .1))
+        const r = (1.2 + m * 2.8) * (.85 + .25 * sc), lim = d * size[0] / BW
+        const rr = Math.min(r, lim); if (rr < .5) continue; o2.globalAlpha = Math.min(1, (.18 + .5 * m) * sc * .85); o2.drawImage(G, sx - rr, sy - rr, rr * 2, rr * 2)
+        if (i < 4 && m > .9) { const L = Math.min(lim, (9 + 10 * m) * (.7 + .4 * sc)); o2.globalAlpha = .25 * sc; o2.drawImage(S, sx - L, sy - L, L * 2, L * 2) } }
       raf = reduce ? 0 : requestAnimationFrame(frame) }
     ;(async () => { try { if (!(await setup())) return } catch (e) { el.classList.add('no-gl'); return } el.classList.add('ready'); raf = requestAnimationFrame(frame)
       io = new IntersectionObserver(([e]) => { cancelAnimationFrame(raf); if (e.isIntersecting && !reduce) raf = requestAnimationFrame(frame) }); io.observe(el) })()
