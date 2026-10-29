@@ -16,6 +16,15 @@ export default function Setup() {
         <div className="mt-9"><a href="#services" className="btn-gold">Explore the services</a></div>
       </PageHero>
 
+      <Section id="onboarding" tone="c">
+        <SectionHead kicker="For official companies" title="Onboarding for established brands" />
+        <div className="mt-10 max-w-3xl space-y-6 text-[19px] leading-8 text-cream/90">
+          <p>This is the initial onboarding offered to official companies that are established and already have an audience without a means to chat.</p>
+          <p>We will do the initial setup for free (granted you have enough people already), but ongoing management, ongoing advice, ongoing moderation or event controls — all of that comes in the packages.</p>
+          <p>We do free consulting for simple paid community setups for small spaces. We do free consulting and free setup for big spaces.</p>
+        </div>
+      </Section>
+
       <Section id="services" tone="b">
         <SectionHead kicker="Choose what you need" title="Explore the services" />
         <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,.72fr)_minmax(0,1.28fr)] lg:gap-14">
