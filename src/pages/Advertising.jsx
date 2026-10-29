@@ -59,7 +59,7 @@ export default function Advertising() {
         </div>
       </Section>
 
-      <Section tone="a">
+      <Section tone="c">
         <SectionHead kicker="Five easy steps" title="How to Order" />
         <div className="mt-16"><Steps items={adSteps} cols={5} /></div>
       </Section>

@@ -24,7 +24,7 @@ export default function Revival() {
         </ol>
       </Section>
 
-      <Section tone="a">
+      <Section tone="c">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="eyebrow">A new name, a real new chapter</p>

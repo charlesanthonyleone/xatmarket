@@ -58,12 +58,12 @@ export function Bubble({ text, color = '#ffffff', fg = '#000044', className = ''
   return <div className={`pointer-events-none select-none rounded-[22px] rounded-bl-md border-[3px] border-ink px-4 py-2 font-display text-[15px] font-semibold shadow-[0_5px_0_#000044] ${className}`} style={{ background: color, color: fg, ...style }} aria-hidden="true">{text}</div>
 }
 const floaters = [
-  { k: 's', c: '#F9C931', m: 'grin', x: '6%', y: '18%', s: 70, d: '5s' },
-  { k: 'b', t: 'hiii! 👋', c: '#02A9D2', f: '#fff', x: '78%', y: '12%', d: '6s' },
+  { k: 's', c: '#F9C931', m: 'grin', x: '3%', y: '26%', s: 70, d: '5s' },
+  { k: 'b', t: 'hiii! 👋', c: '#02A9D2', f: '#fff', x: '80%', y: '20%', d: '6s' },
   { k: 's', c: '#00B168', m: 'wink', x: '88%', y: '62%', s: 54, d: '4.6s' },
   { k: 'b', t: 'lol', c: '#FF3636', f: '#fff', x: '4%', y: '72%', d: '5.4s' },
   { k: 's', c: '#A717C9', m: 'wow', x: '46%', y: '86%', s: 44, d: '6.4s' },
-  { k: 'b', t: 'gg 🎉', c: '#F9C931', x: '60%', y: '4%', d: '5.8s' },
+  { k: 'b', t: 'gg 🎉', c: '#F9C931', x: '58%', y: '16%', d: '5.8s' },
 ]
 export function Floaters({ items = floaters, className = '' }) {
   return (
@@ -101,8 +101,8 @@ export function Warn({ strong, children }) {
   )
 }
 const heroFloat = [
-  { k: 's', c: '#F9C931', m: 'grin', x: '2%', y: '14%', s: 56, d: '5s' },
-  { k: 'b', t: 'brb 🍕', c: '#02A9D2', f: '#fff', x: '86%', y: '10%', d: '6s' },
+  { k: 's', c: '#F9C931', m: 'grin', x: '2%', y: '24%', s: 56, d: '5s' },
+  { k: 'b', t: 'brb 🍕', c: '#02A9D2', f: '#fff', x: '86%', y: '22%', d: '6s' },
   { k: 's', c: '#00B168', m: 'wink', x: '92%', y: '78%', s: 46, d: '4.6s' },
   { k: 's', c: '#FF3636', m: 'wow', x: '44%', y: '90%', s: 38, d: '6.4s' },
 ]
@@ -149,8 +149,8 @@ export function Steps({ items, cols = 3 }) {
         const t = typeof s === 'string' ? null : s.title || s.name, txt = typeof s === 'string' ? s : s.text
         return (
           <Reveal as="li" key={t || txt} delay={(i % cols) * 90} className="h-full">
-            <Tilt className="h-full rounded-[26px] border-[3px] border-ink bg-white p-6 text-ink shadow-[0_8px_0_#000044] sm:p-7">
-              <span className="grid size-14 place-items-center rounded-full border-[3px] border-ink font-display text-2xl font-bold text-ink" style={{ background: dotHues[i % 6] }}>{i + 1}</span>
+            <Tilt className="h-full rounded-[26px] border-[3px] border-ink bg-white p-5 text-ink shadow-[0_8px_0_#000044] sm:p-7">
+              <span className="grid size-12 sm:size-14 place-items-center rounded-full border-[3px] border-ink font-display text-2xl font-bold text-ink" style={{ background: dotHues[i % 6] }}>{i + 1}</span>
               {t && <h3 className="mt-5 font-display text-[22px] font-semibold text-ink sm:text-[24px]">{t}</h3>}
               <p className={`${t ? 'mt-2' : 'mt-4'} text-[16px] font-semibold leading-7 text-ink/75`}>{txt}</p>
             </Tilt>

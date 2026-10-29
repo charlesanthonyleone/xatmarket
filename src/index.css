@@ -12,7 +12,9 @@ body { @apply bg-ink text-cream font-sans antialiased; overflow-x: hidden; }
 .tone-b { background: radial-gradient(90% 70% at 85% 0%, rgba(2,169,210,.45), transparent 60%), radial-gradient(70% 60% at 0% 100%, rgba(167,23,201,.35), transparent 60%), linear-gradient(160deg,#0a2fd6 0%,#000088 70%); }
 .tone-c { background: linear-gradient(135deg,#1E90FF 0%,#02A9D2 55%,#00B168 120%); }
 .tone-y { background: linear-gradient(135deg,#FFE27A 0%,#F9C931 60%,#ffb020 100%); color:#000044; }
-.tone-y .h2,.tone-y .h3,.tone-y .lede,.tone-y .copy,.tone-y .eyebrow { color:#000044 !important; }
+.tone-y .eyebrow { background:#000044; color:#F9C931 !important; box-shadow:0 4px 0 rgba(0,0,40,.35); }
+.tone-c .copy,.tone-c .lede { color:#fff; }
+.tone-y .h2,.tone-y .h3,.tone-y .lede,.tone-y .copy { color:#000044 !important; }
 .dots { background-image: radial-gradient(rgba(255,255,255,.16) 1.5px, transparent 1.6px); background-size: 26px 26px; }
 .eyebrow { @apply inline-flex items-center gap-2 rounded-full bg-gold px-4 py-1.5 font-display text-[15px] font-semibold uppercase tracking-wide text-ink; box-shadow: 0 4px 0 #c99a12; }
 .h-display { @apply font-display font-bold leading-[.98] tracking-[-0.02em] text-cream; text-shadow: 0 6px 0 rgba(0,0,40,.35); }

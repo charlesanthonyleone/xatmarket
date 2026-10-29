@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <section className="tone-b relative isolate overflow-hidden pb-14 pt-28 sm:pb-28 sm:pt-40">
         <div className="dots absolute inset-0 -z-10 opacity-50" aria-hidden="true" />
-        <Floaters />
+        <Floaters className="hidden sm:block" />
         <div className="wrap grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
           <div className="min-w-0 rise">
             <p className="eyebrow">Xat Market / The place to connect</p>

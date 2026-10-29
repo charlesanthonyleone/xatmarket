@@ -23,7 +23,7 @@ export default function Earn() {
         </div>
       </Section>
 
-      <Section tone="a">
+      <Section tone="c">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal className="lg:order-2">
             <p className="eyebrow">Make a name for yourself</p>

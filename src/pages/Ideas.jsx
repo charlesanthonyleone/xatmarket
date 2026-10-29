@@ -52,7 +52,7 @@ export default function Ideas() {
         </div>
       </Section>
 
-      <Section tone="a">
+      <Section tone="c">
         <SectionHead kicker="Open seats" title="Who we're looking for" />
         <div className="mt-16"><Steps items={ideasWanted} /></div>
       </Section>

@@ -46,7 +46,7 @@ export default function Setup() {
         </div>
       </Section>
 
-      <Section tone="a">
+      <Section tone="c">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
             <SectionHead kicker="Games / Gatherings / Good company" title="Give the room a reason to meet">A host gives your members something to do together. Staff can help arrange these events while the booking page is being planned.</SectionHead>
