@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CHAT, IC, SM } from '../img.js'
+import { CHAT, SM } from '../img.js'
+import { Ico, Mark } from './Icons.jsx'
 
 export const ArrowUpRight = ({ className = 'size-4' }) => (
   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" /></svg>
@@ -11,7 +12,7 @@ export const ArrowRight = ({ className = 'size-4' }) => (
 export const Arrow = ArrowRight
 
 export function StaffLink({ children, ghost, className = '' }) {
-  return <a href={CHAT} target="_blank" rel="noopener noreferrer" className={`${ghost ? 'btn-ghost' : 'btn-gold'} ${className}`}>{!ghost && <img src={IC('navbar_register')} alt="" className="size-5" />}{children}<ArrowUpRight /></a>
+  return <a href={CHAT} target="_blank" rel="noopener noreferrer" className={`${ghost ? 'btn-ghost' : 'btn-gold'} ${className}`}>{!ghost && <Ico n="chat" className="size-5" />}{children}<ArrowUpRight /></a>
 }
 export function GoLink({ to, children, className = 'link' }) {
   return <Link to={to} className={`group ${className}`}>{children}<ArrowRight className="size-4 transition group-hover:translate-x-1" /></Link>
@@ -32,13 +33,13 @@ export function Tilt({ className = '', children }) { return <div className={clas
 
 export function Sm({ n, size = 30, className = '' }) { return <img src={SM(n)} alt={`(${n})`} width={size} height={size} className={`inline-block ${className}`} loading="lazy" /> }
 
-// Market group background: night sky, stars, cyan ringed xat planet, dark mountains
+// XatMarket night sky: CSS stars, nebula glow, orbit rings, floating mark
 export function Space({ planet = true, mountains = true }) {
   return (
     <div className="space" aria-hidden="true">
       <div className="stars" /><div className="stars2" />
-      {planet && <img src={IC('xatplanet')} alt="" className="planet right-[-60px] top-[90px] w-[300px] opacity-90 sm:right-[4%] sm:top-[110px] sm:w-[380px] lg:w-[440px]" />}
-      {mountains && <div className="mtn" />}
+      {planet && <><div className="orbit right-[-120px] top-[40px] size-[520px] sm:right-[-60px]" /><div className="orbit right-[-30px] top-[130px] size-[340px] sm:right-[30px]" /></>}
+      {mountains && <div className="horizon" />}
     </div>
   )
 }
@@ -71,7 +72,7 @@ export function PageHero({ kicker, title, accent, children, visual }) {
       <div className={`wrap grid items-center gap-10 ${visual ? 'lg:grid-cols-[1.05fr_1fr] lg:gap-14' : ''}`}>
         <div className="min-w-0 rise">
           {kicker && <p className="eyebrow">{kicker}</p>}
-          <h1 className="h-display mt-4 text-[44px] sm:text-6xl lg:text-[72px]">{title}{accent && <><br /><span className="text-[#7fd6ff]">{accent}</span></>}</h1>
+          <h1 className="h-display mt-4 text-[44px] sm:text-6xl lg:text-[72px]">{title}{accent && <><br /><span className="grad-text">{accent}</span></>}</h1>
           <div className="mt-7 max-w-xl">{children}</div>
         </div>
         {visual && <div className="min-w-0 rise">{visual}</div>}
@@ -93,9 +94,9 @@ export function Invite({ kicker, title, text, cta, note }) {
     </section>
   )
 }
-const bulletSm = ['smile', 'd', 'nerd', 'party', 'music', 'angel', 'love', 'coffee', 'dance']
+const bulletSm = ['smile', 'd', 'party', 'love', 'music', 'heart']
 export function Bullets({ items }) {
-  return <ul className="grid gap-2">{items.map((t, i) => <li key={t} className="flex items-start gap-3 rounded border border-xline bg-white px-4 py-3 text-[16px] leading-7 text-[#212529]"><Sm n={bulletSm[i % bulletSm.length]} size={26} className="mt-0.5 shrink-0" />{t}</li>)}</ul>
+  return <ul className="grid gap-2">{items.map((t, i) => <li key={t} className="flex items-start gap-3 rounded-2xl border border-[#12163a]/10 bg-white px-4 py-3 text-[16px] leading-7 text-[#12163a] shadow-[0_8px_24px_-18px_rgba(40,20,90,.5)]"><Sm n={bulletSm[i % bulletSm.length]} size={26} className="mt-0.5 shrink-0" />{t}</li>)}</ul>
 }
 export function Steps({ items, cols = 3 }) {
   const grid = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 5: 'sm:grid-cols-2 lg:grid-cols-5' }[cols]
@@ -106,9 +107,9 @@ export function Steps({ items, cols = 3 }) {
         return (
           <Reveal as="li" key={t || txt} delay={(i % cols) * 70} className="h-full">
             <div className="pcard h-full">
-              <span className="grid size-11 place-items-center rounded-full font-btn text-lg font-bold text-white" style={{ background: 'linear-gradient(#000099,#000050)' }}>{i + 1}</span>
-              {t && <h3 className="mt-4 font-display text-[21px] font-bold text-[#212529]">{t}</h3>}
-              <p className={`${t ? 'mt-2' : 'mt-4'} text-[15.5px] leading-7 text-[#495057]`}>{txt}</p>
+              <span className="grid size-12 place-items-center rounded-2xl font-display text-xl font-extrabold text-[#1a0b1f]" style={{ background: ['linear-gradient(135deg,#ff4f7b,#ff8a3d)','linear-gradient(135deg,#ffc94d,#ff8a3d)','linear-gradient(135deg,#2ef2c2,#5fb8ff)','linear-gradient(135deg,#8b7bff,#ff4f7b)','linear-gradient(135deg,#2ef2c2,#ffc94d)'][i % 5] }}>{i + 1}</span>
+              {t && <h3 className="mt-4 font-display text-[21px] font-bold text-[#12163a]">{t}</h3>}
+              <p className={`${t ? 'mt-2' : 'mt-4'} text-[15.5px] leading-7 text-[#545a80]`}>{txt}</p>
             </div>
           </Reveal>
         )

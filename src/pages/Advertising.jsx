@@ -20,10 +20,10 @@ export default function Advertising() {
         <p className="mt-2 text-mist">Choose a package</p>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {adPackages.map((p, n) => (
-            <Reveal as="article" key={p.name} delay={(n % 2) * 80} className={`flex flex-col rounded-2xl border p-7 sm:p-9 ${n === 3 ? 'border-gold/50 bg-panel2' : 'border-white/10 bg-panel'}`}>
+            <Reveal as="article" key={p.name} delay={(n % 2) * 80} className={`dcard flex flex-col p-7 sm:p-9 ${n === 3 ? 'hot' : ''}`}>
               <div className="flex flex-wrap items-end justify-between gap-4 border-b border-white/[.08] pb-6">
-                <div><h4 className="font-display text-4xl text-cream">{p.name}</h4><p className="mt-1 text-[15px] text-mist">{p.tag}</p></div>
-                <div className="text-right"><p className="font-display text-5xl leading-none text-gold">{p.price}</p><p className="mt-1.5 text-sm text-mist">{p.per}</p></div>
+                <div><h4 className="font-display text-4xl font-extrabold text-cream">{p.name}</h4><p className="mt-1 text-[15px] text-mist">{p.tag}</p></div>
+                <div className="text-right"><p className="font-display text-5xl font-extrabold leading-none text-gold">{p.price}</p><p className="mt-1.5 text-sm text-mist">{p.per}</p></div>
               </div>
               <ul className="mt-6 space-y-3">{p.points.map((t) => <li key={t} className="flex gap-3 text-[15px] leading-7 text-cream/85"><span className="mt-[13px] h-px w-3 shrink-0 bg-gold" />{t}</li>)}</ul>
               <div className="mt-auto pt-7"><div className="space-y-2 rounded-xl border border-white/[.06] bg-ink/50 p-5 text-sm leading-6 text-mist">{p.math.map((m, k) => <p key={m} className={k === p.math.length - 1 ? 'border-t border-white/10 pt-2 text-goldsoft' : ''}>{m}</p>)}</div></div>
@@ -64,7 +64,7 @@ export default function Advertising() {
         <div className="mt-16"><Steps items={adSteps} cols={5} /></div>
       </Section>
 
-      <div className="tone-y border-t border-white/[.07] py-16"><div className="wrap flex items-center gap-6"><div className="h-px flex-1 bg-gold/40" /><p className="text-center font-display text-3xl font-bold lowercase text-white sm:text-4xl">Everything below is outside Xat</p><div className="h-px flex-1 bg-gold/40" /></div></div>
+      <div className="tone-y border-t border-white/[.07] py-16"><div className="wrap flex items-center gap-6"><div className="h-px flex-1 bg-gold/40" /><p className="text-center font-display text-3xl font-bold text-white sm:text-4xl">Everything below is outside Xat</p><div className="h-px flex-1 bg-gold/40" /></div></div>
 
       <Section tone="a">
         <SectionHead kicker="Off-Platform Advertising" title="Promote Outside Xat">

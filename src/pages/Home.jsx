@@ -2,18 +2,19 @@ import { Link } from 'react-router-dom'
 import { StaffLink, Section, SectionHead, Steps, Invite, Reveal, GoLink, Space, ArrowRight } from '../components/ui.jsx'
 import { HeroChat, AdMock, SetupMock, RevivalMock, EarnMock, CastMock } from '../components/Mocks.jsx'
 import { marketPaths, marketSteps } from '../data.js'
-import { IC, SM } from '../img.js'
+import { Ico, Mark } from '../components/Icons.jsx'
 
 const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', earn: '/get-paid', ideas: '/ideas' }
 const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, earn: EarnMock, ideas: CastMock }
-const icons = { advertising: 'navbar_store', setup: 'navbar_apps', revival: 'navbar_support', earn: 'apps_trade', ideas: 'navbar_powers' }
+const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', earn: 'coins', ideas: 'bulb' }
+const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
 const tabs = [['General Market Info', '/'], ['Wanna Get Paid?', '/get-paid'], ['Community Management/Setup', '/community-setup'], ['Community Revival', '/community-revival'], ['Advertising', '/advertising'], ['Plans (Please Help)', '/ideas']]
 const principles = [
-  { title: 'Use Xat Trade', text: 'For payments in xats, use the official Trade app. Never give someone your password or pay by Transfer first.', icon: 'apps_trade' },
-  { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'navbar_groups' },
-  { title: 'Respect the space', text: "We follow Xat's rules and do not help build spaces for bullying or harassment. Market is independent of Xat.", icon: 'navbar_help' },
+  { title: 'Use Xat Trade', text: 'For payments in xats, use the official Trade app. Never give someone your password or pay by Transfer first.', icon: 'trade' },
+  { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'users' },
+  { title: 'Respect the space', text: "We follow Xat's rules and do not help build spaces for bullying or harassment. Market is independent of Xat.", icon: 'shield' },
 ]
-const Plus = () => <span className="grid size-[18px] shrink-0 place-items-center rounded-full bg-[#00b168] text-[14px] font-bold leading-none text-white">+</span>
+const Plus = () => <span className="grid size-[18px] shrink-0 place-items-center rounded-full bg-mint text-[#0b0f2e] text-[14px] font-bold leading-none">+</span>
 
 export default function Home() {
   return (
@@ -31,9 +32,9 @@ export default function Home() {
         </div>
       </section>
 
-      <nav aria-label="Market tabs" className="sticky top-[60px] z-30 border-y border-white/10 bg-[#000088]/95 backdrop-blur-sm">
+      <nav aria-label="Market tabs" className="sticky top-[68px] z-30 border-y border-white/10 bg-[#12163a]/95 backdrop-blur-sm">
         <div className="flex items-center gap-1 overflow-x-auto px-3 py-2 text-[15px] text-white sm:px-5">
-          <span className="mr-3 flex shrink-0 items-center gap-2 text-[17px] font-semibold"><img src={IC('xatplanet')} alt="" className="h-3 w-6" />Market</span>
+          <span className="mr-3 flex shrink-0 items-center gap-2 text-[17px] font-semibold"><Mark className="size-5" />Market</span>
           {tabs.map(([t, to]) => <Link key={t} to={to} className="flex shrink-0 items-center gap-1.5 rounded px-2.5 py-1 hover:bg-white/10"><Plus />{t}</Link>)}
         </div>
       </nav>
@@ -43,9 +44,9 @@ export default function Home() {
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {marketPaths.map((p) => (
             <Link key={p.id} to={routes[p.id]} className="gcard group flex flex-col">
-              <p className="gcard-h">{p.title}</p>
-              <div className="mx-3 mt-3 grid h-[96px] place-items-center rounded-sm" style={{ background: 'radial-gradient(circle at 70% 30%,#1b3a8a,#000014 72%)' }}><img src={IC(icons[p.id])} alt="" className="size-14 transition group-hover:scale-110" /></div>
-              <p className="px-3 pb-4 pt-2 text-[13px] leading-snug text-[#495057]">{p.label}</p>
+              <p className="gcard-h px-2">{p.title}</p>
+              <div className="mx-4 mt-3 grid h-[96px] place-items-center rounded-2xl text-[#1a0b1f]" style={{ background: grads[p.id] }}><Ico n={icons[p.id]} className="size-12 transition group-hover:scale-110" strokeWidth={2} /></div>
+              <p className="px-3 pb-4 pt-2 text-[13px] leading-snug text-[#545a80]">{p.label}</p>
             </Link>
           ))}
         </div>
@@ -81,7 +82,7 @@ export default function Home() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {principles.map((p, n) => (
             <Reveal key={p.title} delay={n * 80} className="pcard">
-              <img src={IC(p.icon)} alt="" className="size-12" />
+              <span className="grid size-14 place-items-center rounded-2xl bg-[#12163a] text-mint"><Ico n={p.icon} className="size-7" /></span>
               <h3 className="h3 mt-4">{p.title}</h3>
               <p className="copy mt-2">{p.text}</p>
             </Reveal>

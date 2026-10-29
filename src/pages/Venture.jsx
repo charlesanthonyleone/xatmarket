@@ -37,9 +37,10 @@ export default function Venture() {
           <h3 className="font-display text-4xl text-cream sm:text-5xl">Membership tiers</h3>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {v.tiers.map((t, k) => (
-              <Reveal key={t.price} delay={k * 80} className={`rounded-2xl border p-8 ${k === 1 ? 'border-gold/50 bg-panel2' : 'border-white/10 bg-panel'}`}>
-                <p className="font-display text-6xl text-cream">{t.price}<span className="font-sans text-base text-mist"> / month</span></p>
-                <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">{t.perks.map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-gold" />{p}</li>)}</ul>
+              <Reveal key={t.price} delay={k * 80} className={`dcard p-8 ${k === 1 ? 'hot' : ''}`}>
+                <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">Tier {k + 1}</p>
+                <p className="mt-3 font-display text-6xl font-extrabold text-sun">{t.price}<span className="font-sans text-base text-mist"> / month</span></p>
+                <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">{t.perks.map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}</ul>
               </Reveal>
             ))}
           </div>
