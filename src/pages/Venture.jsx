@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
-import { PageHero, Warn, Steps, Arrow } from '../components/ui.jsx'
+import { PageHero, Warn, Section, Reveal, ArrowRight, StaffLink } from '../components/ui.jsx'
+import { VentureMock } from '../components/Mocks.jsx'
 import IdeasInvite from '../components/IdeasInvite.jsx'
 import NotFound from './NotFound.jsx'
 import { ventures } from '../ventures.js'
-import { img } from '../img.js'
 
 export default function Venture() {
   const { slug } = useParams()
@@ -12,52 +12,51 @@ export default function Venture() {
   const v = ventures[n], next = ventures[(n + 1) % ventures.length]
   return (
     <>
-      <PageHero image={v.image} kicker={`Active Ideas · ${v.kicker}`} title={v.name} accent={v.tag}>
-        {v.warning && <Warn strong={v.warning.strong}>{v.warning.text}</Warn>}
+      <PageHero kicker={`Active Ideas · ${v.kicker}`} title={v.name} accent={v.tag} visual={<VentureMock slug={v.slug} />}>
+        {v.warning && <div className="mb-8"><Warn strong={v.warning.strong}>{v.warning.text}</Warn></div>}
+        <StaffLink>Talk to Market staff</StaffLink>
       </PageHero>
 
-      <section className="band band-a pt-12 sm:pt-16">
-        <div className="wrap">
-          <p className="max-w-4xl font-display text-2xl leading-snug text-cream sm:text-3xl">{v.intro}</p>
+      <Section tone="b">
+        <Reveal><p className="max-w-4xl font-display text-[30px] leading-[1.3] text-cream sm:text-[40px]">{v.intro}</p></Reveal>
 
-          {v.steps && <div className="mt-16"><ol className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2">
-            {v.steps.map((s, k) => <li key={s.name} className="bg-navy p-7 sm:p-9"><span className="font-display text-5xl italic text-gold/80">{k + 1}</span><h3 className="h-card mt-4">{s.name}</h3><p className="mt-3 text-[15px] leading-7 text-cream/75">{s.text}</p></li>)}
-          </ol></div>}
+        {v.steps && <ol className="mt-20 grid gap-x-12 gap-y-12 md:grid-cols-2">
+          {v.steps.map((s, k) => <Reveal as="li" key={s.name} delay={(k % 2) * 80} className="border-t border-white/15 pt-7"><span className="font-display text-5xl text-gold">{String(k + 1).padStart(2, '0')}</span><h3 className="h3 mt-5">{s.name}</h3><p className="copy mt-3">{s.text}</p></Reveal>)}
+        </ol>}
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {v.items.map((it) => (
-              <article key={it.name} className="panel p-7 sm:p-9">
-                <div className="h-px w-12 bg-gold" />
-                <h3 className="mt-6 font-display text-3xl font-semibold text-cream">{it.name}</h3>
-                <p className="mt-3 text-[15px] leading-7 text-cream/75">{it.text}</p>
-              </article>
+        <div className="mt-20 grid border-t border-white/[.08] md:grid-cols-2">
+          {v.items.map((it, k) => (
+            <Reveal as="article" key={it.name} delay={(k % 2) * 60} className={`border-b border-white/[.08] py-10 ${k % 2 === 0 ? 'md:border-r md:pr-12' : 'md:pl-12'}`}>
+              <h3 className="font-display text-4xl text-cream">{it.name}</h3>
+              <p className="copy mt-3 text-[16px]">{it.text}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        {v.tiers && <div className="mt-24">
+          <h3 className="font-display text-4xl text-cream sm:text-5xl">Membership tiers</h3>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {v.tiers.map((t, k) => (
+              <Reveal key={t.price} delay={k * 80} className={`rounded-2xl border p-8 ${k === 1 ? 'border-gold/50 bg-panel2' : 'border-white/10 bg-panel'}`}>
+                <p className="font-display text-6xl text-cream">{t.price}<span className="font-sans text-base text-mist"> / month</span></p>
+                <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">{t.perks.map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-gold" />{p}</li>)}</ul>
+              </Reveal>
             ))}
           </div>
+          <p className="mt-6 text-[14px] leading-6 text-mist">{v.tierNote}</p>
+        </div>}
 
-          {v.tiers && <div className="mt-20">
-            <p className="kicker">Membership tiers</p>
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
-              {v.tiers.map((t, k) => (
-                <div key={t.price} className={`rounded-2xl border p-8 ${k === 1 ? 'border-gold/60 bg-gradient-to-b from-[#1a2440] to-navy' : 'border-white/10 bg-navy'}`}>
-                  <p className="font-display text-6xl font-semibold text-gold">{t.price}<span className="text-xl text-mist"> / month</span></p>
-                  <ul className="mt-6 space-y-3">{t.perks.map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[9px] size-1.5 shrink-0 rotate-45 bg-gold" />{p}</li>)}</ul>
-                </div>
-              ))}
-            </div>
-            <p className="mt-5 text-sm leading-6 text-mist">{v.tierNote}</p>
-          </div>}
+        {v.footnote && <p className="lede mt-14 max-w-3xl border-l-2 border-gold pl-6">{v.footnote}</p>}
+      </Section>
 
-          {v.footnote && <p className="body mt-10 max-w-3xl border-l-2 border-gold pl-5">{v.footnote}</p>}
+      <Link to={`/ideas/${next.slug}`} className="group block border-t border-white/[.07] bg-ink transition hover:bg-ink2">
+        <div className="wrap flex items-center justify-between gap-6 py-20 sm:py-24">
+          <div><p className="eyebrow">Next idea</p><p className="h-display mt-3 text-5xl sm:text-7xl">{next.name}</p></div>
+          <span className="grid size-16 shrink-0 place-items-center rounded-full border border-white/15 text-cream transition group-hover:border-gold group-hover:text-gold sm:size-20"><ArrowRight className="size-6 transition group-hover:translate-x-1" /></span>
         </div>
-      </section>
-
-      <Link to={`/ideas/${next.slug}`} className="group relative isolate block overflow-hidden border-t border-white/10">
-        <img src={img(next.image)} alt="" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-70" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
-        <div className="wrap py-20 sm:py-24"><p className="kicker">Next idea</p><p className="mt-2 flex items-center gap-4 font-display text-5xl font-semibold text-cream sm:text-6xl">{next.name}<Arrow className="size-8 text-gold transition group-hover:translate-x-2" /></p></div>
       </Link>
 
-      <IdeasInvite image={v.image} />
+      <IdeasInvite />
     </>
   )
 }

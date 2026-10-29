@@ -1,11 +1,45 @@
-import { CHAT, img } from '../img.js'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CHAT } from '../img.js'
 
-export const Arrow = ({ className = 'size-4' }) => (
+export const ArrowUpRight = ({ className = 'size-4' }) => (
   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" /></svg>
 )
-export function StaffLink({ children, ghost }) {
-  return <a href={CHAT} target="_blank" rel="noopener noreferrer" className={ghost ? 'btn-ghost' : 'btn-gold'}>{children}<Arrow /></a>
+export const ArrowRight = ({ className = 'size-4' }) => (
+  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true"><path d="M3.5 10h13M11 4.5 16.5 10 11 15.5" /></svg>
+)
+export const Arrow = ArrowRight
+
+export function StaffLink({ children, ghost, className = '' }) {
+  return <a href={CHAT} target="_blank" rel="noopener noreferrer" className={`${ghost ? 'btn-ghost' : 'btn-gold'} ${className}`}>{children}<ArrowUpRight /></a>
+}
+export function GoLink({ to, children, className = 'link' }) {
+  return <Link to={to} className={`group ${className}`}>{children}<ArrowRight className="size-4 transition group-hover:translate-x-1" /></Link>
+}
+
+export function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+  const ref = useRef(null)
+  const [on, setOn] = useState(false)
+  useEffect(() => {
+    const el = ref.current; if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setOn(true); return }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setOn(true); io.disconnect() } }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+    io.observe(el); return () => io.disconnect()
+  }, [])
+  return <Tag ref={ref} className={`reveal ${on ? 'in' : ''} ${className}`} style={{ transitionDelay: `${delay}ms` }} {...rest}>{children}</Tag>
+}
+
+export function Section({ id, tone = 'a', className = '', children }) {
+  return <section id={id} className={`section tone-${tone} scroll-mt-16 ${className}`}><div className="wrap">{children}</div></section>
+}
+export function SectionHead({ kicker, title, children, center }) {
+  return (
+    <Reveal className={center ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}>
+      {kicker && <p className="eyebrow">{kicker}</p>}
+      <h2 className="h2 mt-4">{title}</h2>
+      {children && <div className="lede mt-6">{children}</div>}
+    </Reveal>
+  )
 }
 export function Warn({ strong, children }) {
   return (
@@ -15,58 +49,52 @@ export function Warn({ strong, children }) {
     </div>
   )
 }
-export function PageHero({ image, kicker, title, accent, children, tall }) {
+export function PageHero({ kicker, title, accent, children, visual }) {
   return (
-    <section className={`relative isolate flex items-end overflow-hidden ${tall ? 'min-h-[92vh]' : 'min-h-[78vh]'} pt-28`}>
-      <img src={img(image)} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-      <div className="absolute inset-0 -z-10" style={{ background: 'linear-gradient(90deg, rgba(6,11,24,.92) 0%, rgba(6,11,24,.6) 45%, rgba(6,11,24,.15) 100%), linear-gradient(180deg, rgba(6,11,24,.35) 0%, rgba(6,11,24,0) 35%, rgba(6,11,24,.4) 75%, #060b18 100%)' }} />
-      <div className="wrap pb-16 sm:pb-24">
-        <div className="max-w-2xl">
-          {kicker && <p className="kicker">{kicker}</p>}
-          <h1 className="mt-3 font-display text-5xl font-semibold leading-[.95] text-cream sm:text-7xl lg:text-[5.5rem]">{title}{accent && <><br /><em className="font-medium text-gold">{accent}</em></>}</h1>
-          <div className="mt-7 max-w-xl">{children}</div>
+    <section className="relative isolate overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40">
+      <div className="hairline-grid absolute inset-0 -z-10" aria-hidden="true" />
+      <div className="wrap grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+        <div className="min-w-0 rise">
+          {kicker && <p className="eyebrow">{kicker}</p>}
+          <h1 className="h-display mt-5 text-[46px] sm:text-7xl lg:text-[80px]">{title}{accent && <><br /><em className="text-goldsoft">{accent}</em></>}</h1>
+          <div className="mt-8 max-w-xl">{children}</div>
         </div>
+        {visual && <div className="min-w-0 rise" style={{ animationDelay: '.15s' }}>{visual}</div>}
       </div>
     </section>
   )
 }
-export function SectionHead({ kicker, title, children, center }) {
+export function Invite({ kicker, title, text, cta, note }) {
   return (
-    <div className={center ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}>
-      {kicker && <p className="kicker">{kicker}</p>}
-      <h2 className="h-section mt-2">{title}</h2>
-      {children && <div className="body mt-5">{children}</div>}
-    </div>
-  )
-}
-export function Invite({ image = 'hero', kicker, title, text, cta, note }) {
-  return (
-    <section className="relative isolate overflow-hidden py-28 sm:py-36">
-      <img src={img(image)} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-60" />
-      <div className="absolute inset-0 -z-10" style={{ background: 'radial-gradient(70% 90% at 50% 50%, rgba(6,11,24,.55) 0%, rgba(6,11,24,.92) 70%, #060b18 100%)' }} />
-      <div className="wrap text-center">
-        {kicker && <p className="kicker">{kicker}</p>}
-        <h2 className="mx-auto mt-3 max-w-3xl font-display text-5xl font-semibold leading-[.98] text-cream sm:text-6xl">{title}</h2>
-        <p className="body mx-auto mt-6 max-w-xl">{text}</p>
-        <div className="mt-9 flex justify-center"><StaffLink>{cta}</StaffLink></div>
-        {note && <p className="mt-4 text-sm text-mist">{note}</p>}
-      </div>
+    <section className="relative isolate overflow-hidden border-t border-white/[.07] bg-ink2 py-28 sm:py-40">
+      <div className="hairline-grid absolute inset-0 -z-10" aria-hidden="true" />
+      <Reveal className="wrap text-center">
+        {kicker && <p className="eyebrow">{kicker}</p>}
+        <h2 className="h-display mx-auto mt-5 max-w-4xl text-[46px] sm:text-7xl">{title}</h2>
+        <p className="lede mx-auto mt-7 max-w-2xl">{text}</p>
+        <div className="mt-10 flex justify-center"><StaffLink>{cta}</StaffLink></div>
+        {note && <p className="mt-5 text-sm text-mist">{note}</p>}
+      </Reveal>
     </section>
   )
 }
 export function Bullets({ items }) {
-  return <ul className="space-y-4">{items.map((t) => <li key={t} className="flex gap-4 border-b border-white/10 pb-4 text-[15px] leading-7 text-cream/85"><span className="mt-[11px] size-1.5 shrink-0 rotate-45 bg-gold" aria-hidden="true" />{t}</li>)}</ul>
+  return <ul>{items.map((t) => <li key={t} className="flex gap-4 border-b border-white/[.08] py-4 text-[15.5px] leading-7 text-cream/85"><span className="mt-[13px] h-px w-4 shrink-0 bg-gold" aria-hidden="true" />{t}</li>)}</ul>
 }
-export function Steps({ items }) {
+export function Steps({ items, cols = 3 }) {
+  const grid = { 2: 'md:grid-cols-2', 3: 'md:grid-cols-3', 5: 'sm:grid-cols-2 lg:grid-cols-5' }[cols]
   return (
-    <ol className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">
-      {items.map((s, i) => (
-        <li key={s.title || s.name} className="bg-navy p-7 sm:p-9">
-          <span className="font-display text-5xl italic text-gold/80">{i + 1}</span>
-          <h3 className="h-card mt-4">{s.title || s.name}</h3>
-          <p className="mt-3 text-[15px] leading-7 text-cream/75">{s.text}</p>
-        </li>
-      ))}
+    <ol className={`grid gap-x-10 gap-y-12 ${grid}`}>
+      {items.map((s, i) => {
+        const t = typeof s === 'string' ? null : s.title || s.name, txt = typeof s === 'string' ? s : s.text
+        return (
+          <Reveal as="li" key={t || txt} delay={(i % cols) * 80} className="border-t border-white/15 pt-7">
+            <span className="font-display text-5xl text-gold">{String(i + 1).padStart(2, '0')}</span>
+            {t && <h3 className="h3 mt-5">{t}</h3>}
+            <p className={`${t ? 'mt-3' : 'mt-5'} copy`}>{txt}</p>
+          </Reveal>
+        )
+      })}
     </ol>
   )
 }
