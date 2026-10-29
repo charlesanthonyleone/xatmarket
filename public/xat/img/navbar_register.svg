@@ -1,0 +1,196 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20">
+<defs>
+<linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="0" y1="4.9750000000000005" x2="0" y2="-4.9750000000000005" spreadMethod="pad">
+<stop  offset="20.392156862745097%" stop-color="#FFFFFF" stop-opacity="0"/>
+
+<stop  offset="73.72549019607843%" stop-color="#FFFFFF" stop-opacity="0.9490196078431372"/>
+
+<stop  offset="100%" stop-color="#FFFFFF" stop-opacity="0.6509803921568628"/>
+
+<stop  offset="100%" stop-color="#000000" stop-opacity="0.25098039215686274"/>
+</linearGradient>
+
+<radialGradient id="Gradient_2" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="9.667964172978714" fx="0" fy="0" gradientTransform="matrix( 0.4835557844811113, -0.8753135457051132, 0.5145861022018243, 0.28185871929647666, 8.15,14.05) " spreadMethod="pad">
+<stop  offset="0%" stop-color="#000000" stop-opacity="0.4117647058823529"/>
+
+<stop  offset="100%" stop-color="#013198" stop-opacity="0"/>
+</radialGradient>
+
+<radialGradient id="Gradient_3" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="5.021096120370531" fx="0" fy="0" gradientTransform="matrix( 0.7767228323269383, -0.6298425531369083, 0.4008088974507598, 0.4929202589767108, 6.9,5.4) " spreadMethod="pad">
+<stop  offset="0%" stop-color="#000000" stop-opacity="0.4235294117647059"/>
+
+<stop  offset="100%" stop-color="#013198" stop-opacity="0"/>
+</radialGradient>
+
+<filter id="Filter_1" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.49 0" result="result1"/>
+</filter>
+
+<g id="Mask_Mobile_Icon_Symbols_navMe_0_1_MASK_0_FILL">
+<path fill="#FFFFFF" stroke="none" d="
+M 16.8 -4.85
+Q 15.360546875 -9.33125 12.45 -12.3 7.3 -17.3 0.05 -17.3 -7.25 -17.3 -12.3 -12.3 -17.45 -7.2 -17.45 0 -17.45 7.15 -12.3 12.15 -11.5 13.05 -10.45 13.85 -10.35 14 -10.15 14.1 -8.5365234375 15.2169921875 -5 16.65
+L 16.8 -4.85 Z"/>
+</g>
+
+<g id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer4_0_FILL">
+<path fill="#000000" stroke="none" d="
+M 13.15 6.45
+Q 13.15 3.3 10.95 1.05 8.7 -1.15 5.55 -1.15 2.35 -1.15 0.15 1.05 -2.1 3.3 -2.1 6.45 -2.1 9.6 0.15 11.8 0.5158203125 12.2064453125 0.9 12.5 1.33984375 11.1041015625 2.2 9.9 3.75 7.7 5.4 7.55 4 7.55 3 6.55 2 5.55 2 4.15 2 2.75 3 1.75 4 0.75 5.4 0.75 6.8 0.75 7.8 1.75 8.8 2.75 8.8 4.15 8.8 5.55 7.8 6.55 6.9 7.45 5.7 7.55 7.5 7.55 9 10 9.711328125 11.1619140625 10.1 12.5 10.5556640625 12.1943359375 10.95 11.8 13.15 9.6 13.15 6.45 Z"/>
+</g>
+
+<g id="Extra_Symbols__Ignore_This_Folder__overlay_0_Layer0_0_FILL">
+<path fill="url(#Gradient_1)" stroke="none" d="
+M 3.85 -1.55
+Q 2.25 -2.9 0 -2.9 -2.25 -2.9 -3.85 -1.55 -5.45 -0.2 -5.45 1.75 -5.45 2.4 -5.3 2.9
+L 5.3 2.75
+Q 5.45 2.35 5.45 1.75 5.45 -0.2 3.85 -1.55 Z"/>
+</g>
+
+<g id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer2_0_FILL">
+<path fill="#009900" stroke="none" d="
+M 7.8 1.75
+Q 6.8 0.75 5.4 0.75 4 0.75 3 1.75 2 2.75 2 4.15 2 5.55 3 6.55 4 7.55 5.4 7.55 3.75 7.7 2.2 9.9 1.33984375 11.1041015625 0.9 12.5 1.0064453125 12.5845703125 1.1 12.65 2 13.3 3.05 13.65 4.2 14.05 5.55 14.05 8 14.05 9.9 12.7 10.0162109375 12.6154296875 10.1 12.5 9.711328125 11.1619140625 9 10 7.5 7.55 5.7 7.55 6.9 7.45 7.8 6.55 8.8 5.55 8.8 4.15 8.8 2.75 7.8 1.75 Z"/>
+</g>
+
+<g id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_FILL">
+<path fill="url(#Gradient_2)" stroke="none" d="
+M 5.7 7.55
+Q 5.55 7.55 5.45 7.55
+L 5.4 7.55
+Q 3.75 7.7 2.2 9.9 1.33984375 11.1041015625 0.9 12.5 1.0064453125 12.5845703125 1.1 12.65 1.933984375 13.25234375 2.9 13.6 3.4673828125 10.598046875 5.4 9.35 3.4673828125 10.598046875 2.9 13.6 2.9728515625 13.62421875 3.05 13.65 4.2 14.05 5.55 14.05 8 14.05 9.9 12.7 10.0162109375 12.6154296875 10.1 12.5 9.711328125 11.1619140625 9 10 7.5 7.55 5.7 7.55 Z"/>
+
+<path fill="url(#Gradient_3)" stroke="none" d="
+M 7.8 1.75
+Q 6.8 0.75 5.4 0.75 4 0.75 3 1.75 2 2.75 2 4.15 2 5.55 3 6.55 4 7.55 5.4 7.55
+L 5.45 7.55
+Q 5.55 7.55 5.7 7.55 6.9 7.45 7.8 6.55 8.8 5.55 8.8 4.15 8.8 2.75 7.8 1.75
+M 3.7 4.2
+Q 3.9 2.9 5 2.35 3.9 2.9 3.7 4.2 Z"/>
+</g>
+
+<g id="Pen_0_Layer0_0_FILL">
+<path fill="#000000" stroke="none" d="
+M 15.25 126.85
+L 10.15 121.9 5 116.95 0 127.45 5.1 132.4 15.25 126.85 Z"/>
+
+<path fill="#F4A457" stroke="none" d="
+M 30.75 102.4
+L 10.15 121.9 15.25 126.85 41.35 112.6 30.75 102.4 Z"/>
+
+<path fill="#F4B573" stroke="none" d="
+M 18.65 90.85
+L 16.25 93.25 5 116.95 10.15 121.9 30.75 102.4 18.65 90.85 Z"/>
+
+<path fill="#F8BE2C" stroke="none" d="
+M 108.4 44.2
+L 100.4 36.45 30.75 102.4 41.35 112.6 108.4 44.2 Z"/>
+
+<path fill="#CCD6DA" stroke="none" d="
+M 100.4 36.45
+L 108.4 44.2 115.2 37.2 107.5 29.75 100.4 36.45 Z"/>
+
+<path fill="#D44113" stroke="none" d="
+M 92.55 15.3
+L 107.5 29.75 124.9 13.25 112.95 1.6
+Q 109.4 -1.9 105.35 2.25
+L 92.55 15.3 Z"/>
+
+<path fill="#FAD634" stroke="none" d="
+M 100.4 36.45
+L 85.75 22.3 18.65 90.85 30.75 102.4 100.4 36.45 Z"/>
+
+<path fill="#EAECEE" stroke="none" d="
+M 85.75 22.3
+L 100.4 36.45 107.5 29.75 92.55 15.3 85.75 22.3 Z"/>
+
+<path fill="#BC360C" stroke="none" d="
+M 127.85 24.3
+Q 131.9 20.15 128.35 16.65
+L 124.9 13.25 107.5 29.75 115.2 37.2 127.85 24.3 Z"/>
+</g>
+
+<path id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer2_0_1_STROKES" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 0.925 12.525
+Q 0.5158203125 12.2064453125 0.15 11.8 -2.1 9.6 -2.1 6.45 -2.1 3.3 0.15 1.05 2.35 -1.15 5.55 -1.15 8.7 -1.15 10.95 1.05 13.15 3.3 13.15 6.45 13.15 9.6 10.95 11.8 10.5556640625 12.1943359375 10.125 12.525 10.0162109375 12.6154296875 9.9 12.7 8 14.05 5.55 14.05 4.2 14.05 3.05 13.65 2 13.3 1.1 12.65 1.0064453125 12.5845703125 0.925 12.525 Z"/>
+
+<path id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_1_STROKES" stroke="#000000" stroke-opacity="0.6509803921568628" stroke-width="0.05" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 0.925 12.525
+Q 1.33984375 11.1041015625 2.2 9.9 3.75 7.7 5.4 7.55 4 7.55 3 6.55 2 5.55 2 4.15 2 2.75 3 1.75 4 0.75 5.4 0.75 6.8 0.75 7.8 1.75 8.8 2.75 8.8 4.15 8.8 5.55 7.8 6.55 6.9 7.45 5.7 7.55 7.5 7.55 9 10 9.711328125 11.1619140625 10.125 12.525"/>
+
+<path id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_2_STROKES" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 3.7 4.2
+Q 3.9 2.9 5 2.35
+M 2.9 13.6
+Q 3.4673828125 10.598046875 5.4 9.35"/>
+
+<path id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_3_STROKES" stroke="#000000" stroke-width="0.05" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 5.45 7.55
+L 5.4 7.55"/>
+
+<path id="Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_4_STROKES" stroke="#FFCC00" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 0.925 12.525
+Q 0.5158203125 12.2064453125 0.15 11.8 -2.1 9.6 -2.1 6.45 -2.1 3.3 0.15 1.05 2.35 -1.15 5.55 -1.15 8.7 -1.15 10.95 1.05 13.15 3.3 13.15 6.45 13.15 9.6 10.95 11.8 10.5556640625 12.1943359375 10.125 12.525 10.0162109375 12.6154296875 9.9 12.7 8 14.05 5.55 14.05 4.2 14.05 3.05 13.65 2.9728515625 13.62421875 2.9 13.6 1.933984375 13.25234375 1.1 12.65 1.0064453125 12.5845703125 0.925 12.525 Z"/>
+
+<path id="Pen_0_Layer0_0_1_STROKES" stroke="#333333" stroke-opacity="0.6470588235294118" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 124.9 13.25
+L 128.35 16.65
+Q 131.9 20.15 127.85 24.3
+L 115.2 37.2 108.4 44.2 41.35 112.6 15.25 126.85 5.1 132.4 0 127.45 5 116.95 16.25 93.25 18.65 90.85 85.75 22.3 92.55 15.3 105.35 2.25
+Q 109.4 -1.9 112.95 1.6
+L 124.9 13.25 Z
+M 18.65 90.85
+L 30.75 102.4 41.35 112.6"/>
+</defs>
+
+<g transform="matrix( 0.0973052978515625, 0, 0, 0.0973052978515625, 1.1,1.15) ">
+<g transform="matrix( 5.2146453857421875, 0, 0, 5.2146453857421875, 91,90.2) ">
+<mask id="Mask_Mask_1">
+<g transform="matrix( 1.081634521484375, 0, 0, 1.081634521484375, 0,0) ">
+<use xlink:href="#Mask_Mobile_Icon_Symbols_navMe_0_1_MASK_0_FILL"/>
+</g>
+</mask>
+
+<g mask="url(#Mask_Mask_1)">
+<g transform="matrix( 2.290863037109375, 0, 0, 2.2760467529296875, -12.65,-14.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer4_0_FILL"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 5.45,2.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use filter="url(#Filter_1)" xlink:href="#Extra_Symbols__Ignore_This_Folder__overlay_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer2_0_FILL"/>
+
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer2_0_1_STROKES"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_FILL"/>
+
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_1_STROKES"/>
+
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_2_STROKES"/>
+
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_3_STROKES"/>
+
+<use xlink:href="#Extra_Symbols__Ignore_This_Folder__pawn2_0_Layer1_0_4_STROKES"/>
+</g>
+</g>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 59.1,55.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Pen_0_Layer0_0_FILL"/>
+
+<use xlink:href="#Pen_0_Layer0_0_1_STROKES"/>
+</g>
+</g>
+</g>
+</svg>
