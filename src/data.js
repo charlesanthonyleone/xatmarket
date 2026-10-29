@@ -96,14 +96,23 @@ export const marketSteps = [
 ];
 
 export const paidRoles = [
-  { title: "Event hosts", text: "Run bingo, Uno, trivia, movie nights, or shared listening sessions. Agree on the date, prize pool, and host fee first." },
-  { title: "Awards hosts", text: "Gather nominations, run member votes, and host a ceremony. The community can fund xat prizes or vote on titles." },
-  { title: "Community managers", text: "Help with schedules, staff roles, and welcoming guests. Work with owners who share your vision; agree on duties and pay." },
-  { title: "Economists", text: "Help owners plan a budget, read staff reports, and reward the people doing useful work—not just the highest ranks." },
-  { title: "Chat & wiki helpers", text: "Set up rooms, ranks, rules, Xat-generated graphics, or a wiki. Offer a small starter job or ongoing editing." },
-  { title: "Bot developers", text: "Build or configure bots and appbots for events, reminders, and chat tools. Quote custom work before you start." },
-  { title: "Website builders", text: "Build a website, blog, or app with a Xat chat space where people can meet, if embedding is supported." },
-  { title: "Promotion helpers", text: "Help with campaign planning, greetings, event promotion, or outreach outside Xat. Follow each platform's rules." },
+  { icon: "calendar", title: "Event hosts", text: "Run bingo, Uno, trivia, movie nights, or shared listening sessions. Agree on the date, prize pool, and host fee first." },
+  { icon: "star", title: "Awards hosts", text: "Gather nominations, run member votes, and host a ceremony. The community can fund xat prizes or vote on titles." },
+  { icon: "users", title: "Community managers", text: "Help with schedules, staff roles, and welcoming guests. Work with owners who share your vision; agree on duties and pay." },
+  { icon: "coins", title: "Economists", text: "Help owners plan a budget, read staff reports, and reward the people doing useful work—not just the highest ranks." },
+  { icon: "chat", title: "Chat & wiki helpers", text: "Set up rooms, ranks, rules, Xat-generated graphics, or a wiki. Offer a small starter job or ongoing editing." },
+  { icon: "code", title: "Bot developers", text: "Build or configure bots and appbots for events, reminders, and chat tools. Quote custom work before you start." },
+  { icon: "build", title: "Website builders", text: "Build a website, blog, or app with a Xat chat space where people can meet, if embedding is supported." },
+  { icon: "megaphone", title: "Promotion helpers", text: "Help with campaign planning, greetings, event promotion, or outreach outside Xat. Follow each platform's rules." },
+  { icon: "tv", title: "Movie night hosts", text: "Pick the film, set the schedule, and keep the chat going through every scene. Agree on a per-night fee with the owner." },
+  { icon: "chat", title: "Active chatters", text: "Be the regular who talks, welcomes, and keeps the room lively. Owners can reward steady, friendly activity." },
+  { icon: "spark", title: "Graphics specialists", text: "Design backgrounds, avatars, logos, and event art. Share a portfolio and quote each piece up front." },
+  { icon: "help", title: "Game & trivia hosts", text: "Run quizzes, word games, and tournaments that bring people back. Agree on prizes and your host fee first." },
+  { icon: "shield", title: "Moderators", text: "Keep the chat safe and fair, follow the rules, and calm things down. Agree on shifts and pay with the owner." },
+  { icon: "user", title: "Welcomers & greeters", text: "Say hello to new guests, answer questions, and help them find their place. A warm welcome keeps people around." },
+  { icon: "radio", title: "Music & radio DJs", text: "Host listening sessions or a radio show with requests and shout-outs. Use music you have the rights to play." },
+  { icon: "layers", title: "Banner & smiley artists", text: "Create banners, custom smilies, and chat decorations. Offer packs or single pieces at a fair price." },
+  { icon: "send", title: "Writers", text: "Write announcements, event posts, wiki pages, and newsletters. Clear words help a community grow." },
 ];
 
 export const ownerIdeas = [
@@ -305,7 +314,7 @@ export const xatSuggestions = [
 ];
 
 export const ideasWanted = [
-  { title: "Community managers", text: "Lead the community side of a project. Onboard members, moderate discussion, program events around the content, and grow the audience." },
+  { icon: "users", title: "Community managers", text: "Lead the community side of a project. Onboard members, moderate discussion, program events around the content, and grow the audience." },
   { title: "Developers & code assistants", text: "Build and maintain the maps, feeds, bots, and platforms behind each project, working alongside Charles and the team." },
   { title: "Owners & leads", text: "Take operational ownership of a project—help shape it, staff it, and carry it as it grows into a registered business." },
 ];

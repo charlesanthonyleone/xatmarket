@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { PageHero, Warn, Section, Reveal, ArrowRight, StaffLink } from '../components/ui.jsx'
+import { PageHero, Warn, Section, Reveal, ArrowRight, ArrowUpRight, StaffLink } from '../components/ui.jsx'
 import { VentureMock } from '../components/Mocks.jsx'
 import IdeasInvite from '../components/IdeasInvite.jsx'
 import NotFound from './NotFound.jsx'
@@ -13,6 +13,9 @@ export default function Venture() {
   return (
     <>
       <PageHero kicker={`Active Ideas · ${v.kicker}`} title={v.name} accent={v.tag} visual={<VentureMock slug={v.slug} />}>
+        {v.status && <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/15 px-4 py-1.5 text-[14px] font-bold uppercase tracking-widest text-emerald-400"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="3"><path d="m5 12.5 4.5 4.5L19 7" /></svg>{v.status}</p>}
+        {v.credit && <p className="mb-6 font-display text-2xl font-semibold text-goldsoft">{v.credit}</p>}
+        {v.link && <a href={v.link} target="_blank" rel="noopener noreferrer" className="btn-ghost mb-6 mr-4 inline-flex items-center gap-2">Visit XatDeck.com <ArrowUpRight className="size-4" /></a>}
         {v.warning && <div className="mb-8"><Warn strong={v.warning.strong}>{v.warning.text}</Warn></div>}
         <StaffLink>Talk to Market staff</StaffLink>
       </PageHero>

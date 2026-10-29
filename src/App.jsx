@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Layout from './components/Layout.jsx'
 import Home from './pages/Home.jsx'
@@ -25,6 +25,7 @@ export default function App() {
         <Route path="/community-revival" element={<Revival />} />
         <Route path="/get-paid" element={<Earn />} />
         <Route path="/ideas" element={<Ideas />} />
+        <Route path="/ideas/multi-chatting" element={<Navigate to="/ideas/xatdeck" replace />} />
         <Route path="/ideas/:slug" element={<Venture />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

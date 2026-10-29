@@ -1,3 +1,4 @@
+import { Ico } from '../components/Icons.jsx'
 import { PageHero, SectionHead, Section, Steps, Invite, Reveal, StaffLink } from '../components/ui.jsx'
 import { EarnMock, ProfileMock } from '../components/Mocks.jsx'
 import { paidRoles, paidStart, ownerIdeas } from '../data.js'
@@ -13,11 +14,14 @@ export default function Earn() {
 
       <Section tone="b">
         <SectionHead kicker="Your skills have a place here" title="Ways you can earn xats">You do not need to do everything. Choose a service, tell people what you offer, and set a fair price for each job.</SectionHead>
-        <div className="mt-16 grid border-t border-white/[.08] md:grid-cols-2">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {paidRoles.map((r, n) => (
-            <Reveal as="article" key={r.title} delay={(n % 2) * 60} className={`flex gap-6 border-b border-white/[.08] py-8 ${n % 2 === 0 ? 'md:border-r md:pr-10' : 'md:pl-10'}`}>
-              <span className="w-8 shrink-0 font-display text-3xl text-gold">{String(n + 1).padStart(2, '0')}</span>
-              <div><h3 className="h3">{r.title}</h3><p className="copy mt-2">{r.text}</p></div>
+            <Reveal as="article" key={r.title} delay={(n % 3) * 70} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-panel p-7 transition duration-300 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_18px_50px_-20px_rgba(255,201,77,.45)]">
+              <div className="flex items-center gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[.04] text-gold transition duration-300 group-hover:rotate-[-6deg] group-hover:scale-110 group-hover:text-mint"><Ico n={r.icon} className="size-6" /></span>
+                <span className="font-display text-2xl text-gold/60">{String(n + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 className="h3 mt-5">{r.title}</h3><p className="copy mt-2">{r.text}</p>
             </Reveal>
           ))}
         </div>

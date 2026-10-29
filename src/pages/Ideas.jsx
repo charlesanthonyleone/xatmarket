@@ -25,6 +25,7 @@ export default function Ideas() {
         <section key={v.slug} className={`border-t border-white/[.07] py-24 sm:py-32 ${n % 2 ? 'tone-b' : 'tone-a'}`}>
           <div className="wrap grid items-center gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
             <Reveal className={`min-w-0 ${n % 2 ? 'lg:order-2' : ''}`}>
+              {v.status && <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/15 px-4 py-1.5 text-[14px] font-bold uppercase tracking-widest text-emerald-400"><svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="3"><path d="m5 12.5 4.5 4.5L19 7" /></svg>{v.status}</p>}
               <p className="eyebrow">{v.kicker}{v.tag ? ` · ${v.tag}` : ''}</p>
               <h2 className="h2 mt-4">{v.name}</h2>
               {v.warning && <div className="mt-7"><Warn strong={v.warning.strong}>{v.warning.text}</Warn></div>}
