@@ -169,6 +169,8 @@ input[type=range] { accent-color: #0f9f98; }
 @media (prefers-reduced-motion: reduce) { .hero-chat { animation: none; } }
 .hero-chat-bar { border-bottom: 1px solid rgba(var(--water-hi),.14); margin-bottom: 10px; }
 .hero-chat-bar { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px 10px; font-size: 13px; color: rgba(255,255,255,.8); }
+.hero-chat-own { margin: 6px 8px 2px; font-size: 12px; line-height: 1.5; text-align: center; color: rgba(255,255,255,.55); }
+.hero-chat-own a { color: #8fe3d8; } .hero-chat-own a:hover { color: #fff; }
 .hero-chat-hint { margin-right: -2px; font-size: 11px; white-space: nowrap; letter-spacing: .01em; color: rgba(255,255,255,.5); }
 .hero-chat-bar a { color: rgba(255,255,255,.6); } .hero-chat-bar a:hover { color: #fff; }
 .hero-chat-live { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: .02em; }

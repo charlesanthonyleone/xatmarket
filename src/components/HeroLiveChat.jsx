@@ -105,6 +105,7 @@ export default function HeroLiveChat() {
           {busy && <div className="hero-chat-shield" />}
         </div>
         <p className="hero-chat-note">Click the <b>small arrow</b> in the user list to try <b>GIFs, smileys</b> and more.</p>
+        <p className="hero-chat-own">Want a chat of your own? You can make one anytime, and we're glad to help. Just reach out at <a href="mailto:charles@xatmarket.com">charles@xatmarket.com</a>.</p>
         {unlocked && EDGES.map((d) => <span key={d} className={`hc-h hc-${d}`} onPointerDown={start(d)} />)}
       </aside>
     </>
