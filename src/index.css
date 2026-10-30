@@ -133,7 +133,6 @@ input[type=range] { accent-color: #0f9f98; }
 .hero h1, .page-hero h1 { text-shadow: 0 2px 30px rgba(0,0,0,.45); }
 .page-hero { min-height: 78svh; display: flex; align-items: flex-end; padding: 150px 0 80px; background: #050d16; }
 .page-hero .hero-veil { background: linear-gradient(90deg, rgba(3,10,16,.7) 0%, rgba(3,10,16,.35) 45%, rgba(3,10,16,.1) 75%), linear-gradient(180deg, rgba(3,10,16,.5) 0%, rgba(3,10,16,0) 25%, rgba(3,10,16,.2) 70%, rgba(5,13,22,1) 100%); }
-.hero-card .photo-card { max-width: 480px; margin-left: auto; }
 .invite { padding: 140px 0 200px; background: #050d16; }
 .invite-sea { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,13,22,1) 0%, rgba(5,13,22,.35) 35%, rgba(5,13,22,.25) 70%, rgba(5,13,22,.75) 100%), url(/island/land-photo-2560.webp) 50% 82% / cover no-repeat; }
 .space { display: none; }

@@ -58,18 +58,17 @@ export function Warn({ strong, children }) {
     </div>
   )
 }
-export function PageHero({ kicker, title, accent, children, visual }) {
+export function PageHero({ kicker, title, accent, children }) {
   return (
     <section className="page-hero tone-c relative isolate overflow-hidden">
       <IslandGL variant="page" />
       <div className="hero-veil" />
-      <div className={`wrap relative grid items-end gap-10 ${visual ? 'lg:grid-cols-[1.15fr_.85fr] lg:gap-14' : ''}`}>
-        <div className="min-w-0 rise">
+      <div className="wrap relative">
+        <div className="min-w-0 max-w-3xl rise">
           {kicker && <p className="eyebrow">{kicker}</p>}
           <h1 className="h-display mt-4 text-[46px] sm:text-6xl lg:text-[80px]">{title}{accent && <><br /><span className="grad-text">{accent}</span></>}</h1>
           <div className="mt-7 max-w-xl">{children}</div>
         </div>
-        {visual && <div className="min-w-0 rise hero-card" style={{ animationDelay: '.15s' }}>{visual}</div>}
       </div>
     </section>
   )

@@ -1,5 +1,5 @@
 import { PageHero, SectionHead, Section, Steps, Warn, GoLink, ArrowUpRight, Reveal } from '../components/ui.jsx'
-import { CastMock, VentureMock } from '../components/Mocks.jsx'
+import { VentureMock } from '../components/Mocks.jsx'
 import IdeasInvite from '../components/IdeasInvite.jsx'
 import { ventures } from '../ventures.js'
 import { xatSuggestions, ideasWanted } from '../data.js'
@@ -7,7 +7,7 @@ import { xatSuggestions, ideasWanted } from '../data.js'
 export default function Ideas() {
   return (
     <>
-      <PageHero kicker="XatMarket / Active projects" title="Real ventures." accent="Built around Xat." visual={<CastMock />}>
+      <PageHero kicker="XatMarket / Active projects" title="Real ventures." accent="Built around Xat.">
         <p className="lede">We do not build pages on Xat—we build worlds around it. First we create the experience: a news platform, a live world map, a broadcast network. Then we embed Xat at its center, and keep building the world around it. These projects are active now, and each needs managers, staff, and owners to run it.</p>
         <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Paid in real money · Registered businesses · Xat embedded at the center</p>
       </PageHero>

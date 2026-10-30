@@ -1,12 +1,12 @@
 import { Ico } from '../components/Icons.jsx'
 import { PageHero, SectionHead, Section, Steps, Invite, Reveal, StaffLink } from '../components/ui.jsx'
-import { EarnMock, ProfileMock } from '../components/Mocks.jsx'
+import { ProfileMock } from '../components/Mocks.jsx'
 import { paidRoles, paidStart, ownerIdeas } from '../data.js'
 
 export default function Earn() {
   return (
     <>
-      <PageHero kicker="Xat Market / For the people who make things happen" title="Wanna get paid?" accent="Bring what you do best." visual={<EarnMock />}>
+      <PageHero kicker="Xat Market / For the people who make things happen" title="Wanna get paid?" accent="Bring what you do best.">
         <p className="lede">Hang out. Meet people. Offer a skill. When a community needs help, you could turn good work into xats. Owners can build income for their groups too.</p>
         <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">People earn · Communities grow</p>
         <div className="mt-9"><StaffLink>Visit Market chat</StaffLink></div>

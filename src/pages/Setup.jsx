@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { PageHero, SectionHead, Section, StaffLink, Bullets, Warn, Reveal } from '../components/ui.jsx'
-import { SetupMock, EventsMock } from '../components/Mocks.jsx'
+import { EventsMock } from '../components/Mocks.jsx'
 import { services, eventIdeas } from '../data.js'
 
 export default function Setup() {
@@ -10,7 +10,7 @@ export default function Setup() {
   const pick = (n) => { setI(n); if (window.innerWidth < 1024) panel.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
   return (
     <>
-      <PageHero kicker="Market / Community services" title="Build a chat" accent="worth coming back to." visual={<SetupMock />}>
+      <PageHero kicker="Market / Community services" title="Build a chat" accent="worth coming back to.">
         <p className="lede">A good Xat group needs more than a room. Find the people who can set it up, run events, reward the team, and keep it alive.</p>
         <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">9 ways to build · Real people · real Xat work</p>
         <div className="mt-9"><a href="#services" className="btn-gold">Explore the services</a></div>

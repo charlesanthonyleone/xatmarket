@@ -1,5 +1,4 @@
 import { PageHero, Section, SectionHead, StaffLink, Steps, Reveal, ArrowUpRight } from '../components/ui.jsx'
-import { AdMock } from '../components/Mocks.jsx'
 import Calculator from '../components/Calculator.jsx'
 import { adPackages, adPromoLimits, adDollars, adStorePacks, adOutside, adSteps } from '../data.js'
 
@@ -8,7 +7,7 @@ const ext = (href, t) => <a href={href} target="_blank" rel="noopener noreferrer
 export default function Advertising() {
   return (
     <>
-      <PageHero kicker="Market Advertising" title="We run the promo." accent="You pay once." visual={<AdMock />}>
+      <PageHero kicker="Market Advertising" title="We run the promo." accent="You pay once.">
         <p className="lede">Choose a package and pay us once through Xat Trade. We buy the promo time and manage it for you.</p>
         <p className="mt-5 font-display text-2xl font-semibold text-goldsoft">On Xat · set prices · Outside Xat · ask for a quote</p>
         <div className="mt-9 flex flex-wrap gap-3"><StaffLink>Talk to online staff</StaffLink><a href="#calculator" className="btn-ghost">Xat value calculator</a></div>
