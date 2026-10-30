@@ -99,6 +99,7 @@ export default function HeroLiveChat() {
             <a href={`https://xat.com/${XAT_GROUP}`} target="_blank" rel="noopener noreferrer">Open ↗</a>
           </span>
         </div>
+        <p className="hero-chat-hint">{unlocked ? 'Drag the header to move, or an edge to resize.' : 'Unlock to move and resize the chat.'}</p>
         <div className="hero-chat-frame">
           {show && <iframe src={SRC} title="Market xat chat" loading="lazy" allow="autoplay; clipboard-write" referrerPolicy="no-referrer-when-downgrade" />}
           {busy && <div className="hero-chat-shield" />}
