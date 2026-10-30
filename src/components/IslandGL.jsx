@@ -67,7 +67,7 @@ void main(){vec2 px=v*uRes;vec2 u=(px-uOff)/uSize;float t=uT;
   {float wv=texture2D(uWd,u).r;if(wv>.003){float s=sin(t*.9+u.x*9.)*.6+sin(t*1.7+u.y*13.)*.4;uu+=vec2(s*2.2,s*.6)*wv*wv/uSize;}}
   vec3 col=texture2D(uP,uu).rgb;
   /* sky: slow rotation + extra parallax (deeper than the shore) */
-  if(sky>.01){vec2 ru=rot(u,uRot)+uPar/uSize;float sk2=texture2D(uS,ru).r;float k=smoothstep(.8,1.,sky)*smoothstep(.8,1.,sk2)*smoothstep(uHz-.01,uHz-.08,u.y);col=mix(col,texture2D(uP,ru).rgb,k);}
+  if(sky>.01){vec2 ru=rot(u,uRot)+uPar/uSize;float sk2=texture2D(uS,ru).r;float k=smoothstep(.8,1.,sky)*smoothstep(.8,1.,sk2)*smoothstep(uHz-.01,uHz-.08,u.y)*smoothstep(uHz-.07,uHz-.15,ru.y);col=mix(col,texture2D(uP,ru).rgb,k);}
   {float fo2=texture2D(uF,uu).r;float l2=dot(col,vec3(.3,.55,.15));
    col+=vec3(.82,.92,.95)*wSurf.x*smoothstep(.12,.45,l2)*(.25+fo2*.5)*.32;            /* white water at impact */
    col*=1.+wSurf.z*.06;}
@@ -174,7 +174,7 @@ export default function IslandGL({ variant = 'hero' }) {
     if (!reduce && !bg) window.addEventListener('pointermove', onMove, { passive: true })
     const frame = (ms) => {
       if (!alive) return; const t = reduce ? 30 : ms / 1000 + 40
-      gl.uniform1f(U('uT'), t); const rot = reduce ? 0 : (t - 40) * .0009 + Math.sin(t * .021) * .006; gl.uniform1f(U('uRot'), rot)
+      gl.uniform1f(U('uT'), t); const rot = reduce ? 0 : Math.sin((t - 40) * .03) * .03 + Math.sin(t * .021) * .006 /* bounded: an ever-growing angle dragged the horizon & island up into the sky */; gl.uniform1f(U('uRot'), rot)
       par.x += (par.tx - par.x) * .04; par.y += (par.ty - par.y) * .04
       gl.uniform2f(U('uPar'), -par.x * 7, -par.y * 4)
       el.style.setProperty('--px', (-par.x * 6).toFixed(2) + 'px'); el.style.setProperty('--py', (-par.y * 3).toFixed(2) + 'px')
