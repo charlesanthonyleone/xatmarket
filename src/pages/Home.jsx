@@ -13,13 +13,11 @@ const routes = { advertising: '/advertising', setup: '/community-setup', revival
 const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, earn: EarnMock, ideas: CastMock }
 const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', earn: 'coins', ideas: 'bulb' }
 const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
-const tabs = [['General Market Info', '/'], ['Wanna Get Paid?', '/get-paid'], ['Community Management/Setup', '/community-setup'], ['Advertising', '/advertising'], ['Community Revival', '/community-revival'], ['Plans (Please Help)', '/ideas']]
 const principles = [
   { title: 'Use Xat Trade', text: 'For payments in xats, use the official Trade app. Never give someone your password or pay by Transfer first.', icon: 'trade' },
   { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'users' },
   { title: 'Respect the space', text: "We follow Xat's rules and do not help build spaces for bullying or harassment. Market is independent of Xat.", icon: 'shield' },
 ]
-const Plus = () => <span className="tab-plus">+</span>
 
 export default function Home() {
   return (
@@ -38,13 +36,6 @@ export default function Home() {
         </div>
         <a href="#explore" className="hero-scroll" aria-label="Scroll to What can Market do?"><span /></a>
       </section>
-
-      <nav aria-label="Market tabs" className="market-tabs sticky top-[68px] z-30">
-        <div className="flex items-center gap-1 overflow-x-auto px-3 py-2 text-[15px] text-white sm:px-5">
-          <span className="mr-3 flex shrink-0 items-center gap-2 text-[17px] font-semibold">Market</span>
-          {tabs.map(([t, to]) => <Link key={t} to={to} className="flex shrink-0 items-center gap-1.5 rounded px-2.5 py-1 hover:bg-white/10"><Plus />{t}</Link>)}
-        </div>
-      </nav>
 
       <Section id="explore" tone="a">
         <SectionHead kicker="Find your way in" title="What can Market do?" />
