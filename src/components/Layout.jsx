@@ -12,7 +12,7 @@ const services = [
   { to: '/community-revival', label: 'Community Revival', text: 'A fresh start for your Xat chat.' },
 ]
 const ventureItems = ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short, done: v.slug === 'xatdeck' }))
-const ideas = [...ventureItems.filter((i) => i.done), { to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventureItems.filter((i) => !i.done)]
+const ideas = [...ventureItems.filter((i) => i.done), ...ventureItems.filter((i) => !i.done)]
 const Check = () => <svg viewBox="0 0 24 24" className="ml-1.5 inline-block size-[0.95em] align-[-0.1em]" fill="none" stroke="#4ade80" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-label="Completed" role="img"><path d="M20 6 9 17l-5-5" /></svg>
 
 function Wordmark() {
