@@ -176,6 +176,10 @@ input[type=range] { accent-color: #0f9f98; }
 .hero-chat-live i { width: 8px; height: 8px; border-radius: 50%; background: #2ef2c2; box-shadow: 0 0 10px #2ef2c2; animation: hcPulse 2s ease-in-out infinite; }
 @keyframes hcPulse { 50% { opacity: .35; } }
 .hero-chat-frame { position: relative; height: 460px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,.35); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+.hero-chat-note { margin: 10px 6px 2px; font-size: 12px; line-height: 1.5; color: rgba(255,255,255,.58); }
+.hero-chat-note b { color: rgba(var(--water-hi),.95); font-weight: 600; }
+.hcn-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.hcn-chips span { font-size: 11px; padding: 2px 8px; border-radius: 999px; color: rgba(255,255,255,.72); background: rgba(var(--water),.18); border: 1px solid rgba(var(--water-hi),.18); white-space: nowrap; }
 .hero-chat-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 @media (max-width: 1023px) { .hero-chat-frame { height: 420px; } }
 @media (max-width: 480px) { .hero-chat-frame { height: 380px; } }

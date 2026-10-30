@@ -23,6 +23,12 @@ export default function HeroLiveChat() {
       <div className="hero-chat-frame">
         {show && <iframe src={SRC} title="Market xat chat" loading="lazy" allow="autoplay; clipboard-write" referrerPolicy="no-referrer-when-downgrade" />}
       </div>
+      <p className="hero-chat-note">
+        Tap <b>Open ↗</b> to jump in — features are live right away:
+        <span className="hcn-chips">
+          <span>🎞️ GIFs</span><span>🌐 Instant auto‑translate</span><span>📊 Live polls</span><span>▶️ Watch YouTube together</span><span>✨ More coming soon</span>
+        </span>
+      </p>
     </aside>
   )
 }
