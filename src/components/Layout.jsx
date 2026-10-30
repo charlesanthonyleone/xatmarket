@@ -115,7 +115,7 @@ export default function Layout({ children }) {
         <div className="border-t border-white/10 bg-black/20">
           <div className="wrap flex flex-col gap-3 py-7 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-center gap-2">XatMarket · Made for Xat communities</p>
-            <p>Market is independent of Xat.</p>
+            <p>Contact: <a href="mailto:charles@xatmarket.com" className="text-white/80 underline decoration-white/25 underline-offset-4 hover:text-sun">charles@xatmarket.com</a> · Market is independent of Xat.</p>
           </div>
           <p className="wrap pb-8 text-[13px] leading-6 text-white/55">XatMarket is an independent community service and is not affiliated with, endorsed by, or sponsored by xat. “xat” and the smileys shown belong to their owners.</p>
         </div>

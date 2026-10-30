@@ -74,7 +74,7 @@ export default function Setup() {
             <Reveal key={t} delay={k * 80} className="md:px-10 md:first:pl-0 md:last:pr-0"><h3 className="h3">{t}</h3><p className="copy mt-3">{d}</p></Reveal>
           ))}
         </div>
-        <div className="mt-14"><StaffLink ghost>Talk to Market staff</StaffLink></div>
+        <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8"><StaffLink ghost>Talk to Market staff</StaffLink><p className="text-[15.5px] leading-7 text-cream/80"><span className="font-semibold text-cream">Get in touch:</span> <a href="mailto:charles@xatmarket.com" className="text-gold underline decoration-gold/40 underline-offset-4 hover:text-sun">charles@xatmarket.com</a></p></div>
       </Section>
     </>
   )
