@@ -14,7 +14,7 @@ const services = [
 const ideas = [{ to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short }))]
 
 function Wordmark() {
-  return <Link to="/" className="wordmark group" aria-label="XatMarket home"><svg viewBox="0 0 40 40" className="wm-isle" aria-hidden="true"><circle cx="27" cy="11" r="4.2" fill="#f2e6cc" /><path d="M4 31c6-3.2 26-3.2 32 0" stroke="#8fe3d8" strokeWidth="1.6" fill="none" strokeLinecap="round" /><path d="M8 35c5-2 19-2 24 0" stroke="#8fe3d8" strokeOpacity=".5" strokeWidth="1.3" fill="none" strokeLinecap="round" /><path d="M16 30c1-6 1.5-11 4-15" stroke="#e8d6b2" strokeWidth="1.6" fill="none" strokeLinecap="round" /><path d="M20 15c-3-2-7-2-10 1M20 15c-1-3-4-5-8-5M20 15c2-3 6-3 9-1M20 15c3 0 6 2 7 5M20 15c-2 1-4 4-4 7" stroke="#e8d6b2" strokeWidth="1.5" fill="none" strokeLinecap="round" /></svg><span className="wm-text">Xat<em>Market</em></span></Link>
+  return <Link to="/" className="wordmark group" aria-label="XatMarket home"><img src="/brand/logo-header.svg" alt="XatMarket" className="wm-logo" width="270" height="61" /></Link>
 }
 const navCls = (on) => `flex items-center gap-1.5 rounded-xl px-3 py-2 font-display text-[15.5px] font-semibold text-white/90 transition ${on ? 'bg-white/15' : 'hover:bg-white/10'}`
 
