@@ -4,6 +4,7 @@ import { HeroChat, AdMock, SetupMock, RevivalMock, EarnMock, CastMock } from '..
 import { marketPaths, marketSteps } from '../data.js'
 import { Ico, Mark } from '../components/Icons.jsx'
 import IslandGL from '../components/IslandGL.jsx'
+import HeroLiveChat from '../components/HeroLiveChat.jsx'
 
 const CARD = import.meta.env.BASE_URL + 'cards/'
 const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', earn: 'c_earn', ideas: 'c_ideas' }
@@ -26,13 +27,14 @@ export default function Home() {
       <section className="hero tone-c relative isolate overflow-hidden">
         <IslandGL variant="hero" />
         <div className="hero-veil" />
-        <div className="wrap hero-inner">
+        <div className="wrap hero-inner hero-grid">
           <div className="min-w-0 max-w-[640px] rise">
             <p className="eyebrow">Xat Market / The place to connect</p>
             <h1 className="h-display mt-4 text-[52px] sm:text-[84px] lg:text-[96px]">Good people.<br /><span className="grad-text">Good things to build.</span></h1>
             <p className="lede mt-6 max-w-lg">Market brings Xat communities together with people who can help. Need a better chat, a bigger crowd, or a fresh start? Start here.</p>
             <div className="mt-8 flex flex-wrap gap-3"><StaffLink>Visit chat</StaffLink><a href="#explore" className="btn-ghost">What can Market do?</a></div>
           </div>
+          <HeroLiveChat />
         </div>
         <a href="#explore" className="hero-scroll" aria-label="Scroll to What can Market do?"><span /></a>
       </section>
