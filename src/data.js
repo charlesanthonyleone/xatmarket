@@ -82,8 +82,8 @@ export const eventIdeas = [
 ];
 
 export const marketPaths = [
-  { id: "advertising", label: "Get seen", title: "Advertising", text: "Put your chat on Xat's homepage, or ask about reaching people outside Xat.", detail: "On-Xat packages start at 3,500 xats." },
   { id: "setup", label: "Build your space", title: "Community setup", text: "Find help with chat setup, managers, events, staff pay, bots, wikis, and websites.", detail: "Tell us what you need for a quote." },
+  { id: "advertising", label: "Get seen", title: "Advertising", text: "Put your chat on Xat's homepage, or ask about reaching people outside Xat.", detail: "On-Xat packages start at 3,500 xats." },
   { id: "revival", label: "Start again", title: "Community revival", text: "Work with Charles to face old problems, reconnect with people, and give your chat a fresh start.", detail: "A custom, hands-on service." },
   { id: "earn", label: "Offer your skills", title: "Wanna Get Paid?", text: "Find ways to earn xats as a host, manager, builder, or community owner.", detail: "Meet people and build your reputation." },
   { id: "ideas", label: "Run something big", title: "Active Ideas", text: "Real ventures—news, weather, sports, and broadcast platforms—looking for managers, staff, and owners. Xat sits embedded at the center of each one.", detail: "Paid in real money. Registered businesses." },

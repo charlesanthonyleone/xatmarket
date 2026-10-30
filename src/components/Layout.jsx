@@ -7,8 +7,8 @@ import { ArrowUpRight } from './ui.jsx'
 import IslandGL from './IslandGL.jsx'
 
 const services = [
-  { to: '/advertising', label: 'Advertising', text: 'We run the promo. You pay once.' },
   { to: '/community-setup', label: 'Community Setup', text: 'Build a chat worth coming back to.' },
+  { to: '/advertising', label: 'Advertising', text: 'We run the promo. You pay once.' },
   { to: '/community-revival', label: 'Community Revival', text: 'A fresh start for your Xat chat.' },
 ]
 const ideas = [{ to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short }))]

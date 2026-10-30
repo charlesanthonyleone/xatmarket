@@ -13,7 +13,7 @@ const routes = { advertising: '/advertising', setup: '/community-setup', revival
 const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, earn: EarnMock, ideas: CastMock }
 const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', earn: 'coins', ideas: 'bulb' }
 const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
-const tabs = [['General Market Info', '/'], ['Wanna Get Paid?', '/get-paid'], ['Community Management/Setup', '/community-setup'], ['Community Revival', '/community-revival'], ['Advertising', '/advertising'], ['Plans (Please Help)', '/ideas']]
+const tabs = [['General Market Info', '/'], ['Wanna Get Paid?', '/get-paid'], ['Community Management/Setup', '/community-setup'], ['Advertising', '/advertising'], ['Community Revival', '/community-revival'], ['Plans (Please Help)', '/ideas']]
 const principles = [
   { title: 'Use Xat Trade', text: 'For payments in xats, use the official Trade app. Never give someone your password or pay by Transfer first.', icon: 'trade' },
   { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'users' },
