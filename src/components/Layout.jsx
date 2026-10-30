@@ -11,7 +11,9 @@ const services = [
   { to: '/advertising', label: 'Advertising', text: 'We run the promo. You pay once.' },
   { to: '/community-revival', label: 'Community Revival', text: 'A fresh start for your Xat chat.' },
 ]
-const ideas = [{ to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short }))]
+const ventureItems = ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short, done: v.slug === 'xatdeck' }))
+const ideas = [...ventureItems.filter((i) => i.done), { to: '/ideas', label: 'All active ideas', text: 'Real ventures. Built around Xat.' }, ...ventureItems.filter((i) => !i.done)]
+const Check = () => <svg viewBox="0 0 24 24" className="ml-1.5 inline-block size-[0.95em] align-[-0.1em]" fill="none" stroke="#4ade80" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-label="Completed" role="img"><path d="M20 6 9 17l-5-5" /></svg>
 
 function Wordmark() {
   return <Link to="/" className="wordmark group" aria-label="XatMarket home"><img src="/brand/logo-header.svg" alt="XatMarket" className="wm-logo" width="270" height="61" /></Link>
@@ -38,7 +40,7 @@ function Dropdown({ label, items, active }) {
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0b1d2a]/95 p-2 backdrop-blur-md shadow-2xl">
           {items.map((i) => (
             <NavLink key={i.to} to={i.to} end onClick={() => setOpen(false)} className={({ isActive }) => `block rounded-2xl px-4 py-2.5 transition hover:bg-white/[.07] ${isActive ? 'bg-white/[.07]' : ''}`}>
-              <span className="block font-display text-[15.5px] font-bold text-white">{i.label}</span>
+              <span className="block font-display text-[15.5px] font-bold text-white">{i.label}{i.done && <Check />}</span>
               {i.text && <span className="mt-0.5 block text-[13px] text-white/60">{i.text}</span>}
             </NavLink>
           ))}
@@ -88,7 +90,7 @@ export default function Layout({ children }) {
           {services.map((s) => <Link key={s.to} to={s.to} className="block border-b border-white/10 py-3.5 text-xl text-white">{s.label}</Link>)}
           <Link to="/get-paid" className="mt-4 block border-b border-white/10 py-4 font-display text-3xl font-extrabold text-white">Get Paid</Link>
           <p className="mt-8 font-mono text-xs uppercase tracking-widest text-mint">Ideas</p>
-          {ideas.map((s) => <Link key={s.to} to={s.to} className="block border-b border-white/10 py-3.5 text-xl text-white">{s.label}</Link>)}
+          {ideas.map((s) => <Link key={s.to} to={s.to} className="block border-b border-white/10 py-3.5 text-xl text-white">{s.label}{s.done && <Check />}</Link>)}
           <a href={CHAT} target="_blank" rel="noopener noreferrer" className="btn-gold mt-10 w-full">Visit chat <ArrowUpRight /></a>
         </nav>
       </div>
@@ -109,7 +111,7 @@ export default function Layout({ children }) {
           </div>
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-mint">Ideas</p>
-            <ul className="mt-4 space-y-2.5 text-[15px]">{ideas.map((s) => <li key={s.to}><Link to={s.to} className="text-white/80 hover:text-sun">{s.label}</Link></li>)}</ul>
+            <ul className="mt-4 space-y-2.5 text-[15px]">{ideas.map((s) => <li key={s.to}><Link to={s.to} className="text-white/80 hover:text-sun">{s.label}{s.done && <Check />}</Link></li>)}</ul>
           </div>
         </div>
         <div className="border-t border-white/10 bg-black/20">
