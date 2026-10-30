@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const XAT_GROUP = 'Market'
@@ -105,7 +106,7 @@ export default function HeroLiveChat() {
           {busy && <div className="hero-chat-shield" />}
         </div>
         <p className="hero-chat-note">Click the <b>small arrow</b> in the user list to try <b>GIFs, smileys</b> and more.</p>
-        <p className="hero-chat-own">Feel free to make a chat of your own! This service is here if you need it.</p>
+        <p className="hero-chat-own">Hands-on? You're always welcome to set up a chat of your own. We're simply here to make it easier whenever you'd like a hand, along with a few <Link to="/community-setup">other services</Link> worth exploring.</p>
         {unlocked && EDGES.map((d) => <span key={d} className={`hc-h hc-${d}`} onPointerDown={start(d)} />)}
       </aside>
     </>
