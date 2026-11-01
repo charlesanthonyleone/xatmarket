@@ -10,6 +10,7 @@ const services = [
   { to: '/community-setup', label: 'Community Setup', text: 'Build a chat worth coming back to.' },
   { to: '/advertising', label: 'Advertising', text: 'We run the promo. You pay once.' },
   { to: '/community-revival', label: 'Community Revival', text: 'A fresh start for your Xat chat.' },
+  { to: '/leonebot', label: 'LeoneBot', text: 'The lion that guards your chat. Coming soon.' },
 ]
 const ventureItems = ventures.map((v) => ({ to: `/ideas/${v.slug}`, label: v.short, done: v.slug === 'xatdeck' }))
 const ideas = [...ventureItems.filter((i) => i.done), ...ventureItems.filter((i) => !i.done)]

@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom'
 import { StaffLink, Section, SectionHead, Steps, Invite, Reveal, GoLink, Space, ArrowRight } from '../components/ui.jsx'
-import { HeroChat, AdMock, SetupMock, RevivalMock, EarnMock, CastMock } from '../components/Mocks.jsx'
+import { HeroChat, AdMock, SetupMock, RevivalMock, LeoneMock, EarnMock, CastMock } from '../components/Mocks.jsx'
 import { marketPaths, marketSteps } from '../data.js'
 import { Ico, Mark } from '../components/Icons.jsx'
 import IslandGL from '../components/IslandGL.jsx'
 import HeroLiveChat from '../components/HeroLiveChat.jsx'
 
 const CARD = import.meta.env.BASE_URL + 'cards/'
-const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', earn: 'c_earn', ideas: 'c_ideas' }
+const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', leonebot: 'c_leonebot', earn: 'c_earn', ideas: 'c_ideas' }
 
-const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', earn: '/get-paid', ideas: '/ideas' }
-const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, earn: EarnMock, ideas: CastMock }
-const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', earn: 'coins', ideas: 'bulb' }
-const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
+const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', leonebot: '/leonebot', earn: '/get-paid', ideas: '/ideas' }
+const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, leonebot: LeoneMock, earn: EarnMock, ideas: CastMock }
+const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', leonebot: 'shield', earn: 'coins', ideas: 'bulb' }
+const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', leonebot: 'linear-gradient(135deg,#ffc94d,#2ef2c2)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
 const principles = [
   { title: 'Use Xat Trade', text: 'For payments in xats, use the official Trade app. Never give someone your password or pay by Transfer first.', icon: 'trade' },
   { title: "Know who you're hiring", text: 'Agree on the work, price, and access before a job begins. An introduction or a vouch is not a guarantee.', icon: 'users' },
@@ -39,7 +39,7 @@ export default function Home() {
 
       <Section id="explore" tone="a">
         <SectionHead kicker="Find your way in" title="What can Market do?" />
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {marketPaths.map((p) => (
             <Link key={p.id} to={routes[p.id]} className="isle-card group">
               <img src={`${CARD}${cimg[p.id]}.webp`} alt="" loading="lazy" width="1024" height="768" />
@@ -52,7 +52,7 @@ export default function Home() {
 
       {marketPaths.map((p, i) => {
         const M = mocks[p.id]
-        const tone = ['b', 'y', 'a', 'c', 'b'][i] // sand, lagoon, shallows, night, sand
+        const tone = ['b', 'y', 'a', 'c', 'b', 'y'][i] // sand, lagoon, shallows, night, sand, lagoon
         return (
           <Section key={p.id} tone={tone}>
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">

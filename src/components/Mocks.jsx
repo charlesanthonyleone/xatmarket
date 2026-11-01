@@ -13,6 +13,7 @@ export const AdMock = () => <PhotoCard img="c_advertising" label="Advertising" c
 export const SetupMock = () => <PhotoCard img="c_setup" label="Community Setup" caption="Build a chat worth coming back to." />
 export const EventsMock = () => <PhotoCard img="c_setup" label="Community Setup" />
 export const RevivalMock = () => <PhotoCard img="c_revival" label="Community Revival" caption="A fresh start for your Xat chat." />
+export const LeoneMock = () => <PhotoCard img="c_leonebot" label="LeoneBot" caption="Sleeps until real trouble starts." />
 export const EarnMock = () => <PhotoCard img="c_earn" label="Get Paid" caption="Bring what you do best." />
 export const ProfileMock = () => <PhotoCard img="c_earn" label="Get Paid" />
 export const CastMock = () => <PhotoCard img="c_ideas" label="Ideas" caption="Real ventures. Built around Xat." />

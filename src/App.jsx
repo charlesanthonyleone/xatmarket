@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx'
 import Advertising from './pages/Advertising.jsx'
 import Setup from './pages/Setup.jsx'
 import Revival from './pages/Revival.jsx'
+import LeoneBot from './pages/LeoneBot.jsx'
 import Earn from './pages/Earn.jsx'
 import Ideas from './pages/Ideas.jsx'
 import Venture from './pages/Venture.jsx'
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/advertising" element={<Advertising />} />
         <Route path="/community-setup" element={<Setup />} />
         <Route path="/community-revival" element={<Revival />} />
+        <Route path="/leonebot" element={<LeoneBot />} />
         <Route path="/get-paid" element={<Earn />} />
         <Route path="/ideas" element={<Ideas />} />
         <Route path="/ideas/multi-chatting" element={<Navigate to="/ideas/xatdeck" replace />} />
