@@ -70,15 +70,48 @@ const together = [
   { title: 'Guard handles it', text: 'The people causing harm are dealt with. Everyone else is left alone.' },
   { title: 'Fun resumes', text: 'When LeoneGuard goes back to sleep, LeoneHost cools the meter and picks the game up where it left off.' },
 ]
-const Card = ({ items }) => (
-  <div className="mt-16 grid border-t border-white/[.08] md:grid-cols-2">
-    {items.map((it, k) => (
-      <Reveal as="article" key={it.name} delay={(k % 2) * 60} className={`border-b border-white/[.08] py-10 ${k % 2 === 0 ? 'md:border-r md:pr-12' : 'md:pl-12'}`}>
-        <h3 className="font-display text-4xl text-cream">{it.name}</h3>
-        <p className="copy mt-3 text-[16px]">{it.text}</p>
-      </Reveal>
-    ))}
-  </div>
+
+const guardCmds = [['!appeal <case>', 'ask staff to review an action'], ['!optout', 'stop logging your messages'], ['!kick / !ban / !mute', 'staff moderation, rank checked'], ['!undo <case>', 'staff overturn with a public correction'], ['!badword / !links', 'chat filters'], ['PC the lion', 'report someone who will not stop']]
+const hostCmds = [['!8ball · !fortune', 'ask the lion anything'], ['!horoscope <sign>', 'same reading all day'], ['!dice 2d6 · !flip', 'roll or toss'], ['!ship a b · !wyr', 'compatibility, would you rather'], ['!roast', 'playful, never cruel'], ['!trivia · !poll q | a | b', 'room games and live polls'], ['!play chess hard', 'challenge LeoneHost in PC'], ['!stats · !leaderboard', 'your ELO and the top players']]
+
+const Code = ({ children }) => <code className="rounded-md border border-white/10 bg-ink/80 px-1.5 py-0.5 font-mono text-[0.9em] font-semibold text-sun">{children}</code>
+
+const SIDES = {
+  guard: { name: 'LeoneGuard', role: 'Protection', dot: 'bg-mint', text: 'text-mint', ring: 'border-mint/25' },
+  host: { name: 'LeoneHost', role: 'Fun', dot: 'bg-sun', text: 'text-sun', ring: 'border-sun/25' },
+}
+const Tag = ({ side, className = '' }) => (
+  <p className={`inline-flex items-center gap-2 font-mono text-[11.5px] font-bold uppercase tracking-widest ${SIDES[side].text} ${className}`}><span className={`size-2 rounded-full ${SIDES[side].dot}`} />{SIDES[side].name} · {SIDES[side].role}</p>
+)
+/** One aligned comparison row: Guard on the left, Host on the right. Stacks Guard → Host on mobile. */
+const Pair = ({ n, label, guard, host, tone = 'b', id }) => (
+  <Section id={id} tone={tone}>
+    <Reveal className="flex items-baseline gap-4 border-b border-white/[.08] pb-5">
+      <span className="font-mono text-[13px] font-bold text-mist">{String(n).padStart(2, '0')}</span>
+      <h2 className="font-display text-3xl text-cream sm:text-4xl">{label}</h2>
+    </Reveal>
+    <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-0">
+      <Reveal className={`dcard min-w-0 border ${SIDES.guard.ring} p-6 sm:p-8 lg:rounded-r-none`}><Tag side="guard" className="mb-5" />{guard}</Reveal>
+      <Reveal delay={80} className={`dcard min-w-0 border ${SIDES.host.ring} p-6 sm:p-8 lg:rounded-l-none lg:border-l-0`}><Tag side="host" className="mb-5" />{host}</Reveal>
+    </div>
+  </Section>
+)
+const H = ({ children }) => <h3 className="font-display text-2xl text-cream sm:text-[28px]">{children}</h3>
+const P = ({ children }) => <p className="copy mt-3 text-[15.5px]">{children}</p>
+const List = ({ items }) => (
+  <dl className="mt-5 divide-y divide-white/[.07] border-y border-white/[.07]">
+    {items.map((it) => <div key={it.name || it.title} className="py-4"><dt className="font-semibold text-cream">{it.name || it.title}</dt><dd className="mt-1 text-[14.5px] leading-6 text-mist">{it.text}</dd></div>)}
+  </dl>
+)
+const Cmds = ({ items }) => (
+  <ul className="mt-5 space-y-3">
+    {items.map(([c, t]) => <li key={c} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4"><span className="shrink-0 sm:w-48"><Code>{c}</Code></span><span className="text-[14.5px] text-mist">{t}</span></li>)}
+  </ul>
+)
+const Packs = ({ items, unit }) => (
+  <ul className="mt-5 grid grid-cols-3 gap-2">
+    {items.map((k) => <li key={k.credits} className="rounded-xl border border-white/10 bg-ink/40 p-3 text-center"><span className="block font-display text-2xl text-cream tabular-nums">{fmt(k.xats)}</span><span className="text-[12px] text-mist">xats · {fmt(k.credits)} {unit}</span></li>)}
+  </ul>
 )
 
 export default function XatBotSuite() {
@@ -86,112 +119,59 @@ export default function XatBotSuite() {
     <>
       <PageHero kicker="Market / Services · XatBot Suite" title="XatBot Suite" accent="two bots, one pride.">
         <Soon />
-        <p className="lede"><b className="text-cream">LeoneGuard</b> protects the chat and its users. <b className="text-cream">LeoneHost</b> hosts the games, events, and fun commands. Way funner than the usual chat bots. They work together, so the fun stops when trouble starts and comes back when it is over.</p>
+        <p className="lede"><b className="text-mint">LeoneGuard</b> protects the chat and its users. <b className="text-sun">LeoneHost</b> hosts the games, events, and fun commands. Read them side by side below: protection on the left, fun on the right.</p>
         <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">LeoneGuard + LeoneHost · {fmt(PLAN_XATS)} xats/month</p>
-        <div className="mt-9 flex flex-wrap gap-3"><MailBtn /><a href="#guard" className="btn-ghost">LeoneGuard</a><a href="#host" className="btn-ghost">LeoneHost</a></div>
+        <div className="mt-9 flex flex-wrap gap-3"><MailBtn /><a href="#compare" className="btn-ghost">Compare the two bots</a></div>
       </PageHero>
 
-      <Section id="guard" tone="b">
-        <SectionHead kicker="LeoneGuard · protects the chat and users" title="Sleep. Roar. Guard. Sleep.">LeoneGuard sleeps until real trouble starts. Then it wakes, roars, and guards the chat to defend its lambs. When things calm down, it goes back to sleep.</SectionHead>
-        <div className="mt-14"><Steps items={cycle} cols={2} /></div>
-      </Section>
+      <div id="compare" className="sticky top-0 z-30 hidden border-y border-white/[.08] bg-ink/90 backdrop-blur lg:block">
+        <div className="wrap grid grid-cols-2 py-3"><Tag side="guard" /><Tag side="host" className="pl-8" /></div>
+      </div>
 
-      <Section tone="c">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="min-w-0">
-            <p className="eyebrow">It does not coddle</p>
-            <h2 className="h2 mt-4">Venting is fine.<br /><em className="text-gold">Become stronger.</em></h2>
-            <p className="lede mt-7">Most drama is just people being people. The lion stays asleep for:</p>
-            <div className="mt-6"><Bullets items={sleeps} /></div>
-          </Reveal>
-          <Reveal delay={120} className="min-w-0"><LeoneMock /></Reveal>
-        </div>
-      </Section>
+      <Pair n={1} label="Who it is" tone="b"
+        guard={<><H>The sleeping lion.</H><P>LeoneGuard sleeps until real trouble starts. Then it wakes, roars, and guards its lambs. When the chat calms down it says goodnight and sleeps again.</P><List items={cycle} /></>}
+        host={<><H>The fun one.</H><P>LeoneHost is the same lion off duty. It uses xat’s AppBot power and the Canvas side panel to run games and events you can see and play, not just read. Way funner than the usual chat bots.</P><div className="mt-6"><LeoneMock /></div></>} />
 
-      <Section tone="b">
-        <SectionHead kicker="What wakes the lion" title="Real trouble, not hurt feelings." />
-        <div className="mt-16 grid border-t border-white/[.08] md:grid-cols-2">
-          {wakes.map((it, k) => (
-            <Reveal as="article" key={it.name} delay={(k % 2) * 60} className={`border-b border-white/[.08] py-10 ${k % 2 === 0 ? 'md:border-r md:pr-12' : 'md:pl-12'}`}>
-              <h3 className="font-display text-4xl text-cream">{it.name}</h3>
-              <p className="copy mt-3 text-[16px]">{it.text}</p>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      <Pair n={2} label="What it does" tone="c"
+        guard={<><H>Wakes for real trouble, not hurt feelings.</H><List items={wakes} /><p className="mt-6 font-semibold text-cream">It stays asleep for:</p><div className="mt-3"><Bullets items={sleeps} /></div></>}
+        host={<><H>Keeps the room busy.</H><List items={hostFeatures.filter((f) => ['Games panel', 'Events', 'Polls', 'Heat meter'].includes(f.name))} /></>} />
 
-      <Section tone="a">
-        <SectionHead kicker="Fair by design" title="Safeguards" />
-        <div className="mt-12 max-w-3xl"><Bullets items={safeguards} /></div>
-      </Section>
-
-      <Section tone="b">
-        <SectionHead kicker="LeoneGuard · under the mane" title="What LeoneGuard brings" />
-        <Card items={extras} />
-      </Section>
-
-      <Section id="host" tone="c">
-        <SectionHead kicker="LeoneHost · games, events, fun" title="The fun one.">LeoneHost uses xat’s AppBot power and the Canvas side panel to run games and events you can see and play, not just read.</SectionHead>
-        <Card items={hostFeatures} />
-      </Section>
-
-      <Section id="arcade" tone="b">
-        <SectionHead kicker="LeoneHost arcade · early access" title="Challenge the lion.">Message LeoneHost in private chat, type <code className="font-mono text-mint">!play chess hard</code>, and play. Each game uses a few play credits. Wins and losses move your ELO for that game, and the best players reach the leaderboard.</SectionHead>
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {arcade.map((g) => (
-            <Reveal key={g.name} className="dcard min-w-0 p-6">
-              <div className="flex items-baseline justify-between gap-3"><h3 className="font-display text-xl text-cream">{g.name}</h3><span className="font-mono text-[12px] font-bold text-sun">{g.cost} credit{g.cost > 1 ? 's' : ''}</span></div>
-              <p className="mt-2 text-[14.5px] leading-6 text-mist">{g.text}</p>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal className="dcard mt-8 p-6 sm:p-8">
-          <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">Play credits · priced in xats</p>
-          <ul className="mt-4 grid grid-cols-3 gap-2">
-            {playPacks.map((k) => <li key={k.credits} className="rounded-xl border border-white/10 bg-ink/40 p-3 text-center"><span className="block font-display text-2xl text-cream tabular-nums">{fmt(k.xats)}</span><span className="text-[12px] text-mist">xats · {fmt(k.credits)} play credits</span></li>)}
+      <Pair n={3} label="Key features" tone="b"
+        guard={<><H>Under the mane.</H><List items={extras} /><p className="mt-6 font-semibold text-cream">Safeguards</p><div className="mt-3"><Bullets items={safeguards} /></div></>}
+        host={<><H>Challenge the lion.</H><P>Message LeoneHost in private chat, type <Code>!play chess hard</Code>, and play. Wins and losses move your ELO for that game, and the best players reach the leaderboard.</P>
+          <ul className="mt-5 divide-y divide-white/[.07] border-y border-white/[.07]">
+            {arcade.map((g) => <li key={g.name} className="flex items-baseline justify-between gap-4 py-3"><span><span className="font-semibold text-cream">{g.name}</span><span className="block text-[14px] leading-6 text-mist">{g.text}</span></span><span className="shrink-0 font-mono text-[12px] font-bold text-sun">{g.cost} credit{g.cost > 1 ? 's' : ''}</span></li>)}
           </ul>
-          <p className="mt-4 text-[13.5px] leading-6 text-mist">Hard mode costs 50% more. Play credits are a separate balance from drama credits but use the same rate, converted with the calculator below. Bought by sending xats to LeoneHost. Proposed pricing, early access only. Not on sale yet.</p>
-        </Reveal>
-      </Section>
+          <List items={hostFeatures.filter((f) => ['Fun commands', 'Credits panel'].includes(f.name))} /></>} />
 
-      <Section tone="c">
-        <SectionHead kicker="Two bots, one pride" title="How they work together" />
+      <Pair n={4} label="Commands" tone="c"
+        guard={<><H>Fair, with a way to appeal.</H><Cmds items={guardCmds} /></>}
+        host={<><H>Type it and play.</H><Cmds items={hostCmds} /></>} />
+
+      <Section tone="b">
+        <SectionHead kicker="Shared · two bots, one pride" title="How they work together">When LeoneGuard wakes, LeoneHost’s heat meter lights up and any game pauses. When Guard sleeps again, the fun picks up where it left off.</SectionHead>
         <div className="mt-14"><Steps items={together} cols={2} /></div>
       </Section>
 
-      <Section tone="c">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="min-w-0">
-            <p className="eyebrow">Planned pricing</p>
-            <h2 className="h2 mt-4">One plan.<br /><em className="text-gold">No surprises.</em></h2>
-            <p className="lede mt-7">Paid checks only run while the lion is awake, so quiet chats use almost nothing. Unused credits roll over to the next month.</p>
-          </Reveal>
-          <Reveal delay={120} className="dcard hot min-w-0 p-8 sm:p-10">
-            <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">XatBot Suite · LeoneGuard + LeoneHost</p>
-            <p className="mt-3 font-display text-6xl font-extrabold text-sun tabular-nums">{fmt(PLAN_XATS)}<span className="font-sans text-base text-mist"> xats / month</span></p>
-            <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">
-              {[`${PLAN_CREDITS} drama credits each month`, 'Unused credits roll over', 'Low-balance alerts to the owner', 'Pay in xats, with auto-renew', 'Both bots included'].map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}
-            </ul>
-            <p className="mt-7 border-t border-white/[.08] pt-6 text-[13px] font-semibold text-cream/90">Extra credit packs</p>
-            <ul className="mt-3 grid grid-cols-3 gap-2">
-              {creditPacks.map((k) => <li key={k.credits} className="rounded-xl border border-white/10 bg-ink/40 p-3 text-center"><span className="block font-display text-2xl text-cream tabular-nums">{fmt(k.xats)}</span><span className="text-[12px] text-mist">xats · {fmt(k.credits)} credits</span></li>)}
-            </ul>
-            <p className="mt-6 text-[13.5px] leading-6 text-mist">Proposed pricing. Not on sale yet. Xats figures come from the Xat value calculator below: the {fmt(ref.usd)} USD store pack is worth {fmt(ref.xats)} xats + {fmt(ref.days)} days × {RATE} = {fmt(ref.xats + ref.days * RATE)} xats, or {xatsPerUsd().toFixed(1)} xats per US dollar. The plan is set at {PLAN_USD} USD a month.</p>
-          </Reveal>
-        </div>
-      </Section>
+      <Pair n={5} label="Credits & pricing in xats" tone="c" id="pricing"
+        guard={<><H>Drama credits.</H><p className="mt-3 font-display text-5xl font-extrabold text-sun tabular-nums">{fmt(PLAN_XATS)}<span className="font-sans text-base text-mist"> xats / month for the suite</span></p><P>{PLAN_CREDITS} drama credits a month. Paid checks only run while the lion is awake, so quiet chats use almost nothing. Unused credits roll over, and the owner gets low-balance alerts.</P><p className="mt-6 text-[13px] font-semibold text-cream/90">Extra drama-credit packs</p><Packs items={creditPacks} unit="credits" /></>}
+        host={<><H>Play credits.</H><P>A separate balance at the same rate, bought by sending xats to LeoneHost. Each arcade game uses a few. Hard mode costs 50% more. Room games, fun commands, and polls are included with the plan.</P><p className="mt-6 text-[13px] font-semibold text-cream/90">Play-credit packs</p><Packs items={playPacks} unit="play credits" /></>} />
 
       <Section tone="b">
-        <SectionHead kicker="Same calculator as Advertising" title="How we get the xats price">The XatBot Suite price uses the Market's own Xat value calculator. Try a store pack to see what it is worth in xats.</SectionHead>
+        <SectionHead kicker="Same calculator as Advertising" title="How we get the xats price">Proposed pricing, not on sale yet. The {fmt(ref.usd)} USD store pack is worth {fmt(ref.xats)} xats + {fmt(ref.days)} days × {RATE} = {fmt(ref.xats + ref.days * RATE)} xats, or {xatsPerUsd().toFixed(1)} xats per US dollar. The plan is set at {PLAN_USD} USD a month.</SectionHead>
         <Reveal className="mt-14"><Calculator /></Reveal>
       </Section>
+
+      <Pair n={6} label="Early access" tone="c"
+        guard={<><H>Not live yet.</H><P>LeoneGuard is in testing. No chat is protected by it today, and nothing on this page has been sold.</P></>}
+        host={<><H>Not live yet.</H><P>LeoneHost and the arcade are in testing too. Leaderboards start empty when early access opens.</P></>} />
 
       <section className="invite tone-c relative isolate overflow-hidden">
         <div className="invite-sea" aria-hidden="true" />
         <Reveal className="wrap relative text-center">
           <p className="eyebrow justify-center">Coming soon · Early access</p>
           <h2 className="h-display mx-auto mt-4 max-w-4xl text-[44px] sm:text-[68px]">Want the pride in your chat?</h2>
-          <p className="lede mx-auto mt-6 max-w-2xl">XatBot Suite is not live yet. Email Charles with your chat name and we will reach out when early access opens.</p>
+          <p className="lede mx-auto mt-6 max-w-2xl">Email Charles with your chat name and we will reach out when early access opens.</p>
           <div className="mt-9 flex justify-center"><MailBtn /></div>
           <p className="mt-4 text-sm text-white/75">charles@xatmarket.com · Nothing is booked or paid for on this page.</p>
         </Reveal>
