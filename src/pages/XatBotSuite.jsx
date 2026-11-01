@@ -45,7 +45,18 @@ const extras = [
   { name: 'Pay in xats', text: 'Send xats by transfer and the time is added automatically. Auto-renew keeps the lion on duty without reminders.' },
 ]
 
+const playPacks = [100, 250, 500].map((c) => ({ credits: c, xats: usdToXats((c * PLAN_USD) / PLAN_CREDITS) }))
+const arcade = [
+  { name: 'Chess', cost: 5, text: 'Full rules (castling, en passant, promotion). Easy, medium, or hard AI.' },
+  { name: 'Checkers', cost: 3, text: 'Forced captures, multi-jumps, and kings.' },
+  { name: 'Battleship', cost: 3, text: '6×6 sea, three ships, and a lion that hunts your hits.' },
+  { name: 'Connect Four', cost: 2, text: 'Looks ahead several moves on hard. Good luck.' },
+  { name: 'Tic-tac-toe', cost: 1, text: 'On hard it never loses. Can you force a draw?' },
+  { name: 'Blackjack', cost: 1, text: 'Hit or stand. The dealer draws to 17.' },
+  { name: 'Hangman & word scramble', cost: 1, text: 'Quick word games for a spare minute.' },
+]
 const hostFeatures = [
+  { name: 'Challenge LeoneHost', text: 'Private-chat games against the bot: chess, checkers, battleship, connect four, and more. Boards show as text in PC and in the Canvas panel, with ELO ratings and leaderboards.' },
   { name: 'Games panel', text: 'Trivia, bingo, hangman, word scramble, and smiley-matching drawn live in xat\u2019s Canvas side panel (AppBot), with scoreboards and leaderboards.' },
   { name: 'Events', text: 'LeoneHost runs game nights, quiz rounds, and \u201cmod of the month\u201d votes on a schedule, so the chat always has something going on.' },
   { name: 'Polls', text: 'Live xat-style bar charts in the Canvas panel. Everyone votes, everyone sees the result move.' },
@@ -124,7 +135,26 @@ export default function XatBotSuite() {
         <Card items={hostFeatures} />
       </Section>
 
-      <Section tone="b">
+      <Section id="arcade" tone="b">
+        <SectionHead kicker="LeoneHost arcade · early access" title="Challenge the lion.">Message LeoneHost in private chat, type <code className="font-mono text-mint">!play chess hard</code>, and play. Each game uses a few play credits. Wins and losses move your ELO for that game, and the best players reach the leaderboard.</SectionHead>
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {arcade.map((g) => (
+            <Reveal key={g.name} className="dcard min-w-0 p-6">
+              <div className="flex items-baseline justify-between gap-3"><h3 className="font-display text-xl text-cream">{g.name}</h3><span className="font-mono text-[12px] font-bold text-sun">{g.cost} credit{g.cost > 1 ? 's' : ''}</span></div>
+              <p className="mt-2 text-[14.5px] leading-6 text-mist">{g.text}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="dcard mt-8 p-6 sm:p-8">
+          <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">Play credits · priced in xats</p>
+          <ul className="mt-4 grid grid-cols-3 gap-2">
+            {playPacks.map((k) => <li key={k.credits} className="rounded-xl border border-white/10 bg-ink/40 p-3 text-center"><span className="block font-display text-2xl text-cream tabular-nums">{fmt(k.xats)}</span><span className="text-[12px] text-mist">xats · {fmt(k.credits)} play credits</span></li>)}
+          </ul>
+          <p className="mt-4 text-[13.5px] leading-6 text-mist">Hard mode costs 50% more. Play credits are a separate balance from drama credits but use the same rate, converted with the calculator below. Bought by sending xats to LeoneHost. Proposed pricing, early access only. Not on sale yet.</p>
+        </Reveal>
+      </Section>
+
+      <Section tone="c">
         <SectionHead kicker="Two bots, one pride" title="How they work together" />
         <div className="mt-14"><Steps items={together} cols={2} /></div>
       </Section>
