@@ -3,7 +3,7 @@ export const ventures = [
   { slug: 'xatcast', name: 'The XatCast Series', short: 'XatCast', kicker: 'Series one', image: 'v_cast',
     intro: 'Four live information platforms, each with a Xat community embedded at its center. Each one watches the world—news, conflict, markets, weather—and gives people a place to talk about it as it happens.',
     items: xatCast },
-  { slug: 'xatvision', name: 'The XatVision Series', short: 'XatVision', kicker: 'Series two', tag: 'Like a TV station', image: 'v_vision', link: 'http://217.216.52.191:8090', linkLabel: 'Watch the preview',
+  { slug: 'xatvision', name: 'The XatVision Series', short: 'XatVision', kicker: 'Series two', tag: 'Like a TV station', image: 'v_vision', link: 'https://tv.xatmarket.com', linkLabel: 'Watch live',
     intro: 'XatVision operates like a broadcast network with multiple channels. Curated stations—art, military history, sports, music—draw from public-domain and licensed archives, with scheduled programming blocks curated by AI agents and human managers. Each station keeps its own staff and community. And when people fall in love with one corner of it—a genre, an era, a scene—whole new niches grow out of it, with their own curators and their own spaces.',
     items: xatVision },
   { slug: 'xatdeck', name: 'XatDeck', short: 'XatDeck', kicker: 'Active plan', status: 'Completed', credit: 'Made by Rexor and Prince.', link: 'https://xatdeck.com', tag: 'Many chats, one place', image: 'v_multi',
