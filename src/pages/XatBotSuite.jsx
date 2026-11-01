@@ -9,7 +9,7 @@ const PLAN_XATS = usdToXats(PLAN_USD)
 const creditPacks = [300, 600, 1200].map((c) => ({ credits: c, xats: usdToXats((c * PLAN_USD) / PLAN_CREDITS) }))
 const ref = packs[DEFAULT_PACK]
 
-const MAIL = 'mailto:charles@xatmarket.com?subject=LeoneBot%20early%20access'
+const MAIL = 'mailto:charles@xatmarket.com?subject=XatBot%20Suite%20early%20access'
 const Soon = () => <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-400/15 px-4 py-1.5 text-[14px] font-bold uppercase tracking-widest text-amber-300"><span className="size-2 rounded-full bg-amber-300" />Coming soon · Early access</p>
 const MailBtn = ({ ghost }) => <a href={MAIL} className={ghost ? 'btn-ghost' : 'btn-gold'}>Join the early-access list<ArrowUpRight /></a>
 
@@ -41,23 +41,47 @@ const safeguards = [
 ]
 const extras = [
   { name: 'DramaScreen engine', text: 'A free first pass reads every message. Only when the lion is awake does a deeper AI check run, first a quick model and then a stronger one for borderline cases. Quotes must match what was really said, word for word.' },
-  { name: 'Games while it rests', text: 'Trivia, bingo, hangman, and word scramble, hosted automatically with scoreboards. Keeps the chat lively.' },
   { name: 'Moderation tools', text: 'Kick, ban, mute, and rank commands, filters for bad words, links, caps, and flooding, plus automember.' },
   { name: 'Pay in xats', text: 'Send xats by transfer and the time is added automatically. Auto-renew keeps the lion on duty without reminders.' },
 ]
 
-export default function LeoneBot() {
+const hostFeatures = [
+  { name: 'Games panel', text: 'Trivia, bingo, hangman, word scramble, and smiley-matching drawn live in xat\u2019s Canvas side panel (AppBot), with scoreboards and leaderboards.' },
+  { name: 'Events', text: 'LeoneHost runs game nights, quiz rounds, and \u201cmod of the month\u201d votes on a schedule, so the chat always has something going on.' },
+  { name: 'Polls', text: 'Live xat-style bar charts in the Canvas panel. Everyone votes, everyone sees the result move.' },
+  { name: 'Fun commands', text: '!8ball, !horoscope by sign, !dice, !coinflip, !ship compatibility, !wyr (would you rather), !roast (playful, never cruel), !fortune, and !trivia.' },
+  { name: 'Heat meter', text: 'A live DramaScreen meter in the panel. It stays calm while the room is fine and lights up when LeoneGuard wakes.' },
+  { name: 'Credits panel', text: 'Owners see the plan time and drama credits left, right in the chat. Display only. Payment still happens by xat transfer.' },
+]
+const together = [
+  { title: 'Guard wakes', text: 'LeoneGuard spots real trouble and roars.' },
+  { title: 'Host reacts', text: 'LeoneHost lights up the heat meter and pauses any game in progress.' },
+  { title: 'Guard handles it', text: 'The people causing harm are dealt with. Everyone else is left alone.' },
+  { title: 'Fun resumes', text: 'When LeoneGuard goes back to sleep, LeoneHost cools the meter and picks the game up where it left off.' },
+]
+const Card = ({ items }) => (
+  <div className="mt-16 grid border-t border-white/[.08] md:grid-cols-2">
+    {items.map((it, k) => (
+      <Reveal as="article" key={it.name} delay={(k % 2) * 60} className={`border-b border-white/[.08] py-10 ${k % 2 === 0 ? 'md:border-r md:pr-12' : 'md:pl-12'}`}>
+        <h3 className="font-display text-4xl text-cream">{it.name}</h3>
+        <p className="copy mt-3 text-[16px]">{it.text}</p>
+      </Reveal>
+    ))}
+  </div>
+)
+
+export default function XatBotSuite() {
   return (
     <>
-      <PageHero kicker="Market / Services · LeoneBot" title="The lion" accent="that guards your chat.">
+      <PageHero kicker="Market / Services · XatBot Suite" title="XatBot Suite" accent="two bots, one pride.">
         <Soon />
-        <p className="lede">LeoneBot sleeps until real trouble starts. Then it wakes, roars, and guards the chat to defend its lambs. When things calm down, it goes back to sleep.</p>
-        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Non-invasive · Does not coddle · {fmt(PLAN_XATS)} xats/month</p>
-        <div className="mt-9 flex flex-wrap gap-3"><MailBtn /><a href="#how" className="btn-ghost">How it works</a></div>
+        <p className="lede"><b className="text-cream">LeoneGuard</b> protects the chat and its users. <b className="text-cream">LeoneHost</b> hosts the games, events, and fun commands. Way funner than the usual chat bots. They work together, so the fun stops when trouble starts and comes back when it is over.</p>
+        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">LeoneGuard + LeoneHost · {fmt(PLAN_XATS)} xats/month</p>
+        <div className="mt-9 flex flex-wrap gap-3"><MailBtn /><a href="#guard" className="btn-ghost">LeoneGuard</a><a href="#host" className="btn-ghost">LeoneHost</a></div>
       </PageHero>
 
-      <Section id="how" tone="b">
-        <SectionHead kicker="A lion, not a nanny" title="Sleep. Roar. Guard. Sleep." />
+      <Section id="guard" tone="b">
+        <SectionHead kicker="LeoneGuard · protects the chat and users" title="Sleep. Roar. Guard. Sleep.">LeoneGuard sleeps until real trouble starts. Then it wakes, roars, and guards the chat to defend its lambs. When things calm down, it goes back to sleep.</SectionHead>
         <div className="mt-14"><Steps items={cycle} cols={2} /></div>
       </Section>
 
@@ -91,15 +115,18 @@ export default function LeoneBot() {
       </Section>
 
       <Section tone="b">
-        <SectionHead kicker="Under the mane" title="What comes with it" />
-        <div className="mt-16 grid border-t border-white/[.08] md:grid-cols-2">
-          {extras.map((it, k) => (
-            <Reveal as="article" key={it.name} delay={(k % 2) * 60} className={`border-b border-white/[.08] py-10 ${k % 2 === 0 ? 'md:border-r md:pr-12' : 'md:pl-12'}`}>
-              <h3 className="font-display text-4xl text-cream">{it.name}</h3>
-              <p className="copy mt-3 text-[16px]">{it.text}</p>
-            </Reveal>
-          ))}
-        </div>
+        <SectionHead kicker="LeoneGuard · under the mane" title="What LeoneGuard brings" />
+        <Card items={extras} />
+      </Section>
+
+      <Section id="host" tone="c">
+        <SectionHead kicker="LeoneHost · games, events, fun" title="The fun one.">LeoneHost uses xat’s AppBot power and the Canvas side panel to run games and events you can see and play, not just read.</SectionHead>
+        <Card items={hostFeatures} />
+      </Section>
+
+      <Section tone="b">
+        <SectionHead kicker="Two bots, one pride" title="How they work together" />
+        <div className="mt-14"><Steps items={together} cols={2} /></div>
       </Section>
 
       <Section tone="c">
@@ -110,10 +137,10 @@ export default function LeoneBot() {
             <p className="lede mt-7">Paid checks only run while the lion is awake, so quiet chats use almost nothing. Unused credits roll over to the next month.</p>
           </Reveal>
           <Reveal delay={120} className="dcard hot min-w-0 p-8 sm:p-10">
-            <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">LeoneBot</p>
+            <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">XatBot Suite · LeoneGuard + LeoneHost</p>
             <p className="mt-3 font-display text-6xl font-extrabold text-sun tabular-nums">{fmt(PLAN_XATS)}<span className="font-sans text-base text-mist"> xats / month</span></p>
             <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">
-              {[`${PLAN_CREDITS} drama credits each month`, 'Unused credits roll over', 'Low-balance alerts to the owner', 'Pay in xats, with auto-renew', 'Games and moderation tools included'].map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}
+              {[`${PLAN_CREDITS} drama credits each month`, 'Unused credits roll over', 'Low-balance alerts to the owner', 'Pay in xats, with auto-renew', 'Both bots included'].map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}
             </ul>
             <p className="mt-7 border-t border-white/[.08] pt-6 text-[13px] font-semibold text-cream/90">Extra credit packs</p>
             <ul className="mt-3 grid grid-cols-3 gap-2">
@@ -125,7 +152,7 @@ export default function LeoneBot() {
       </Section>
 
       <Section tone="b">
-        <SectionHead kicker="Same calculator as Advertising" title="How we get the xats price">The LeoneBot price uses the Market's own Xat value calculator. Try a store pack to see what it is worth in xats.</SectionHead>
+        <SectionHead kicker="Same calculator as Advertising" title="How we get the xats price">The XatBot Suite price uses the Market's own Xat value calculator. Try a store pack to see what it is worth in xats.</SectionHead>
         <Reveal className="mt-14"><Calculator /></Reveal>
       </Section>
 
@@ -133,8 +160,8 @@ export default function LeoneBot() {
         <div className="invite-sea" aria-hidden="true" />
         <Reveal className="wrap relative text-center">
           <p className="eyebrow justify-center">Coming soon · Early access</p>
-          <h2 className="h-display mx-auto mt-4 max-w-4xl text-[44px] sm:text-[68px]">Want the lion in your chat?</h2>
-          <p className="lede mx-auto mt-6 max-w-2xl">LeoneBot is not live yet. Email Charles with your chat name and we will reach out when early access opens.</p>
+          <h2 className="h-display mx-auto mt-4 max-w-4xl text-[44px] sm:text-[68px]">Want the pride in your chat?</h2>
+          <p className="lede mx-auto mt-6 max-w-2xl">XatBot Suite is not live yet. Email Charles with your chat name and we will reach out when early access opens.</p>
           <div className="mt-9 flex justify-center"><MailBtn /></div>
           <p className="mt-4 text-sm text-white/75">charles@xatmarket.com · Nothing is booked or paid for on this page.</p>
         </Reveal>

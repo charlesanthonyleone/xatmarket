@@ -9,7 +9,7 @@ import HeroLiveChat from '../components/HeroLiveChat.jsx'
 const CARD = import.meta.env.BASE_URL + 'cards/'
 const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', leonebot: 'c_leonebot', earn: 'c_earn', ideas: 'c_ideas' }
 
-const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', leonebot: '/leonebot', earn: '/get-paid', ideas: '/ideas' }
+const routes = { advertising: '/advertising', setup: '/community-setup', revival: '/community-revival', leonebot: '/xatbot-suite', earn: '/get-paid', ideas: '/ideas' }
 const mocks = { advertising: AdMock, setup: SetupMock, revival: RevivalMock, leonebot: LeoneMock, earn: EarnMock, ideas: CastMock }
 const icons = { advertising: 'megaphone', setup: 'build', revival: 'revive', leonebot: 'shield', earn: 'coins', ideas: 'bulb' }
 const grads = { advertising: 'linear-gradient(135deg,#ff4f7b,#ff8a3d)', setup: 'linear-gradient(135deg,#2ef2c2,#3d8bff)', revival: 'linear-gradient(135deg,#8b7bff,#ff4f7b)', leonebot: 'linear-gradient(135deg,#ffc94d,#2ef2c2)', earn: 'linear-gradient(135deg,#ffc94d,#ff8a3d)', ideas: 'linear-gradient(135deg,#2ef2c2,#ffc94d)' }
