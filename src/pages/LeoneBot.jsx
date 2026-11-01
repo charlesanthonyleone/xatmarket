@@ -1,5 +1,13 @@
 import { PageHero, SectionHead, Section, Steps, Reveal, Bullets, ArrowUpRight } from '../components/ui.jsx'
 import { LeoneMock } from '../components/Mocks.jsx'
+import Calculator from '../components/Calculator.jsx'
+import { usdToXats, xatsPerUsd, packs, DEFAULT_PACK, RATE, fmt } from '../xatRate.js'
+
+// The plan is set at $5/month and shown in xats using the same rate as the Xat value calculator.
+const PLAN_USD = 5, PLAN_CREDITS = 600
+const PLAN_XATS = usdToXats(PLAN_USD)
+const creditPacks = [300, 600, 1200].map((c) => ({ credits: c, xats: usdToXats((c * PLAN_USD) / PLAN_CREDITS) }))
+const ref = packs[DEFAULT_PACK]
 
 const MAIL = 'mailto:charles@xatmarket.com?subject=LeoneBot%20early%20access'
 const Soon = () => <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-400/15 px-4 py-1.5 text-[14px] font-bold uppercase tracking-widest text-amber-300"><span className="size-2 rounded-full bg-amber-300" />Coming soon · Early access</p>
@@ -44,7 +52,7 @@ export default function LeoneBot() {
       <PageHero kicker="Market / Services · LeoneBot" title="The lion" accent="that guards your chat.">
         <Soon />
         <p className="lede">LeoneBot sleeps until real trouble starts. Then it wakes, roars, and guards the chat to defend its lambs. When things calm down, it goes back to sleep.</p>
-        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Non-invasive · Does not coddle · $5/month</p>
+        <p className="mt-6 font-display text-2xl font-semibold text-goldsoft">Non-invasive · Does not coddle · {fmt(PLAN_XATS)} xats/month</p>
         <div className="mt-9 flex flex-wrap gap-3"><MailBtn /><a href="#how" className="btn-ghost">How it works</a></div>
       </PageHero>
 
@@ -103,13 +111,22 @@ export default function LeoneBot() {
           </Reveal>
           <Reveal delay={120} className="dcard hot min-w-0 p-8 sm:p-10">
             <p className="font-mono text-[11.5px] font-bold uppercase tracking-widest text-mint">LeoneBot</p>
-            <p className="mt-3 font-display text-6xl font-extrabold text-sun">$5<span className="font-sans text-base text-mist"> / month</span></p>
+            <p className="mt-3 font-display text-6xl font-extrabold text-sun tabular-nums">{fmt(PLAN_XATS)}<span className="font-sans text-base text-mist"> xats / month</span></p>
             <ul className="mt-7 space-y-3 border-t border-white/[.08] pt-6">
-              {['600 drama credits each month', 'Unused credits roll over', 'Low-balance alerts to the owner', 'Pay in xats, with auto-renew', 'Games and moderation tools included'].map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}
+              {[`${PLAN_CREDITS} drama credits each month`, 'Unused credits roll over', 'Low-balance alerts to the owner', 'Pay in xats, with auto-renew', 'Games and moderation tools included'].map((p) => <li key={p} className="flex gap-3 text-[15px] text-cream/85"><span className="mt-[11px] h-px w-3 shrink-0 bg-mint" />{p}</li>)}
             </ul>
-            <p className="mt-6 text-[13.5px] leading-6 text-mist">Proposed pricing. Not on sale yet.</p>
+            <p className="mt-7 border-t border-white/[.08] pt-6 text-[13px] font-semibold text-cream/90">Extra credit packs</p>
+            <ul className="mt-3 grid grid-cols-3 gap-2">
+              {creditPacks.map((k) => <li key={k.credits} className="rounded-xl border border-white/10 bg-ink/40 p-3 text-center"><span className="block font-display text-2xl text-cream tabular-nums">{fmt(k.xats)}</span><span className="text-[12px] text-mist">xats · {fmt(k.credits)} credits</span></li>)}
+            </ul>
+            <p className="mt-6 text-[13.5px] leading-6 text-mist">Proposed pricing. Not on sale yet. Xats figures come from the Xat value calculator below: the {fmt(ref.usd)} USD store pack is worth {fmt(ref.xats)} xats + {fmt(ref.days)} days × {RATE} = {fmt(ref.xats + ref.days * RATE)} xats, or {xatsPerUsd().toFixed(1)} xats per US dollar. The plan is set at {PLAN_USD} USD a month.</p>
           </Reveal>
         </div>
+      </Section>
+
+      <Section tone="b">
+        <SectionHead kicker="Same calculator as Advertising" title="How we get the xats price">The LeoneBot price uses the Market's own Xat value calculator. Try a store pack to see what it is worth in xats.</SectionHead>
+        <Reveal className="mt-14"><Calculator /></Reveal>
       </Section>
 
       <section className="invite tone-c relative isolate overflow-hidden">

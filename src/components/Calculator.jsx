@@ -2,13 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { adPackages } from '../data.js'
 import { useReduced } from '../hooks.js'
 
-const packs = [
-  { usd: 50, xats: 8000, days: 480 },
-  { usd: 100, xats: 16500, days: 990 },
-  { usd: 200, xats: 33000, days: 1980 },
-]
-const RATE = 14
-const fmt = (n) => Math.round(n).toLocaleString('en-US')
+import { packs, RATE, DEFAULT_PACK, fmt } from '../xatRate.js'
 const pkgs = adPackages.map((p) => ({ name: p.name, xats: Number(p.price.replace(/[^0-9]/g, '')) }))
 
 function useCount(target) {
@@ -25,7 +19,7 @@ function useCount(target) {
 }
 
 export default function Calculator() {
-  const [p, setP] = useState(2)
+  const [p, setP] = useState(DEFAULT_PACK)
   const [qty, setQty] = useState(1)
   const pk = packs[p]
   const xats = pk.xats * qty, days = pk.days * qty, dayVal = days * RATE, total = xats + dayVal, usd = pk.usd * qty
