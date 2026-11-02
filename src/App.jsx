@@ -29,6 +29,7 @@ export default function App() {
         <Route path="/get-paid" element={<Earn />} />
         <Route path="/ideas" element={<Ideas />} />
         <Route path="/ideas/multi-chatting" element={<Navigate to="/ideas/xatdeck" replace />} />
+        <Route path="/ideas/xatvision" element={<Navigate to="/ideas/xatcast" replace />} />
         <Route path="/ideas/:slug" element={<Venture />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

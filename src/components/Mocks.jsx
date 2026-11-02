@@ -17,9 +17,9 @@ export const LeoneMock = () => <PhotoCard img="c_leonebot" label="XatBot Suite" 
 export const EarnMock = () => <PhotoCard img="c_earn" label="Get Paid" caption="Bring what you do best." />
 export const ProfileMock = () => <PhotoCard img="c_earn" label="Get Paid" />
 export const CastMock = () => <PhotoCard img="c_ideas" label="Ideas" caption="Real ventures. Built around Xat." />
-const vimg = { xatcast: 'v_cast', xatvision: 'v_vision', xatdeck: 'v_multi', xatcodex: 'v_codex', 'xat-overlay': 'v_overlay' }
+const vimg = { xatcast: 'v_vision', xatmaps: 'v_cast', xatdeck: 'v_multi', xatcodex: 'v_codex', 'xat-overlay': 'v_overlay' }
 export function VentureMock({ slug }) { return <PhotoCard img={vimg[slug] || 'c_ideas'} /> }
-export const VisionMock = () => <VentureMock slug="xatvision" />
+export const VisionMock = () => <VentureMock slug="xatcast" />
 export const MultiMock = () => <VentureMock slug="xatdeck" />
 export const CodexMock = () => <VentureMock slug="xatcodex" />
 export const OverlayMock = () => <VentureMock slug="xat-overlay" />

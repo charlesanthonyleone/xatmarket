@@ -264,14 +264,14 @@ export const adSteps = [
   "Need an event host or website? Ask staff for the correct service.",
 ];
 
-export const xatCast = [
+export const xatMaps = [
   { name: "NewsCast", text: "A live news platform with a Xat community embedded at its center. It gathers stories from open news networks and licensed commercial partners, with filters for different topics—so people can be ahead of the conversation, not behind it." },
   { name: "WarCast", text: "A live world map of global warfare, aggregating news sources, war data, and military institutes. People follow events as they unfold and discuss strategy in the chat built into the platform." },
   { name: "TradeCast", text: "Live international tickers with in-depth business coverage. Dedicated niche chats break down oil markets, stocks, and more—so when major events take over the main room, focused discussion has its own space." },
   { name: "WeatherCast", text: "A live world map of global weather phenomena—storms, climate events, and anomalies. Extensive open-source maps are accessible through filtering commands, with the community watching it all together." },
 ];
 
-export const xatVision = [
+export const xatCast = [
   { name: "XatArt", text: "A curated art channel. Programming blocks draw from public-domain and licensed archives—an hour on da Vinci, thirty minutes on Picasso, a full segment devoted to a single sculpture centuries in the making." },
   { name: "XatWar", text: "Historical documentaries, photographs, footage, and texts from the public domain, curated into scheduled programming for people to watch and discuss together." },
   { name: "XatSports", text: "Classic sports footage, photographs, statistics, records, and team legacies. The great moments of sports history, on rotation." },
