@@ -5,6 +5,7 @@ import { marketPaths, marketSteps } from '../data.js'
 import { Ico, Mark } from '../components/Icons.jsx'
 import IslandGL from '../components/IslandGL.jsx'
 import HeroLiveChat from '../components/HeroLiveChat.jsx'
+import FloatingBubbles from '../components/FloatingBubbles.jsx'
 
 const CARD = import.meta.env.BASE_URL + 'cards/'
 const cimg = { advertising: 'c_advertising', setup: 'c_setup', revival: 'c_revival', leonebot: 'c_leonebot', earn: 'c_earn', ideas: 'c_ideas' }
@@ -22,6 +23,7 @@ const principles = [
 export default function Home() {
   return (
     <>
+      <FloatingBubbles />
       <section className="hero tone-c relative isolate overflow-hidden">
         <IslandGL variant="hero" />
         <div className="hero-veil" />
